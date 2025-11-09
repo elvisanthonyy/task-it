@@ -1,5 +1,5 @@
 import { getSession } from "@/libs/session";
-import { redirect } from "next/navigation";
+//import { redirect } from "next/navigation";
 import Nav from "./component/nav";
 import MainHome from "./component/MainHome";
 import NavigationButtons from "./component/NavigationButtons";
