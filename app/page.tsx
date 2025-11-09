@@ -5,16 +5,20 @@ import MainHome from "./component/MainHome";
 import NavigationButtons from "./component/NavigationButtons";
 
 export default async function Home() {
-  const session = await getSession();
-  console.log("SESSION", session);
+  try {
+    const session = await getSession();
+    console.log("SESSION", session);
 
-  return (
-    <>
-      <div>
-        <Nav />
-        <MainHome />
-        <NavigationButtons pageName="home" />
-      </div>
-    </>
-  );
+    return (
+      <>
+        <div>
+          <Nav />
+          <MainHome />
+          <NavigationButtons pageName="home" />
+        </div>
+      </>
+    );
+  } catch (err) {
+    console.error("Error in home", err);
+  }
 }
