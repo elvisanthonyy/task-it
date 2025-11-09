@@ -8,6 +8,7 @@ export default async function Home() {
   try {
     const session = await getSession();
     console.log("SESSION", session);
+    if (!session) return <div>No session</div>;
 
     return (
       <>
