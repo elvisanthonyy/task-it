@@ -1,11 +1,11 @@
 import { getSession } from "@/libs/session";
 //import { redirect } from "next/navigation";
-import Nav from "./component/nav";
+/*import Nav from "./component/nav";
 import MainHome from "./component/MainHome";
-import NavigationButtons from "./component/NavigationButtons";
+import NavigationButtons from "./component/NavigationButtons";*/
 
 export default async function Home() {
-  try {
+  /*try {
     const session = await getSession();
     console.log("SESSION", session);
 
@@ -20,5 +20,6 @@ export default async function Home() {
     );
   } catch (err) {
     console.error("Error in home", err);
-  }
+  }*/
+  return <div>Here</div>;
 }
