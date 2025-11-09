@@ -17,7 +17,7 @@ export default async function Home() {
 
     return (
       <>
-        <div>helloooo</div>
+        <div>{session?.user?.name}</div>
       </>
     );
   } catch (err) {
