@@ -1,23 +1,21 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/libs/dbConnection";
 import { Item } from "@/app/models/item";
+import { getSession } from "next-auth/react";
+
+interface ListBody {
+  listId: string;
+}
 
 const handler = async (req: Request) => {
   dbConnect();
-  /*const authHeader = req.headers.get("authorization");
-  
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return NextResponse.json(
-        { message: "missing or invalid token" },
-        { status: 401 }
-      );
-    }
-  */
+  const session = await getSession();
+  if (!session) {
+    return NextResponse.json({ message: "session not found" });
+  }
   try {
-    const head = req.headers.get("referer");
-
-    const listId = head?.split("list/")[1].split("%20")[0];
-    const items = await Item.find({ listId: listId });
+    const body = (await req?.json()) as ListBody;
+    const items = await Item.find({ listId: body?.listId });
     return NextResponse.json({ items });
   } catch (error) {
     console.log(error);
@@ -25,4 +23,4 @@ const handler = async (req: Request) => {
   }
 };
 
-export { handler as GET };
+export { handler as POST };

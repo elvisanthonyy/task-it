@@ -3,9 +3,11 @@ import Nav from "@/app/component/nav";
 import ListMain from "@/app/component/ListMain";
 import { getSession } from "@/libs/session";
 import NavigationButtons from "@/app/component/NavigationButtons";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { listId: string } }) => {
+  const cookieHeader = (await cookies()).toString();
   const session = await getSession();
   if (!session) {
     redirect("login");
@@ -16,6 +18,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
   const res = await fetch("http://localhost:3000/api/get/list", {
     method: "POST",
     headers: {
+      Cookie: cookieHeader,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

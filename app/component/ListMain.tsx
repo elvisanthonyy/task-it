@@ -64,7 +64,7 @@ const ListMain = ({ list }: ChildProps) => {
 
   const fetchItems = () => {
     api
-      .get<ResponseItem>("/api/list/getitems")
+      .post<ResponseItem>("/api/list/getitems", list._id)
       .then((response) => {
         setItems(response.data.items);
       })
@@ -84,11 +84,18 @@ const ListMain = ({ list }: ChildProps) => {
         <div>{`Items: ${itemsLen}`}</div>
       </div>
       <div className="block nx:grid px-5 nx:px-0 nx:grid-cols-2 md:grid-cols-3 min-w-full nx:items-start mt-0 h-[90%] scrollbar-hide overflow-y-scroll items-center w-[100%]">
-        {items?.map((item, index) => (
-          <div key={item._id}>
-            <ItemComponent item={item} index={index} />
+        {items === undefined ? (
+          <div className="absolute top-[50%] left-[50%] -translate-[50%]">
+            {" "}
+            no items{" "}
           </div>
-        ))}
+        ) : (
+          items?.map((item, index) => (
+            <div key={item._id}>
+              <ItemComponent item={item} index={index} />
+            </div>
+          ))
+        )}
 
         <form
           className={` my-2 w-full mt-6 items-center justify-between  ${
