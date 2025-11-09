@@ -13,7 +13,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
     redirect("login");
   }
   const list = await params;
-  const firstId = list.listId.split("%20")[0];
+  const firstId = list.listId.split("-")[0];
   console.log(firstId);
   const res = await fetch("http://localhost:3000/api/get/list", {
     method: "POST",

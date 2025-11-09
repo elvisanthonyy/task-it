@@ -39,7 +39,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
   const listLink = () => {
     setCurrentList(list);
     setTimeout(() => {
-      redirect(`/list/${list._id} ${list.title}`);
+      redirect(`/list/${list._id}-${list.title.replaceAll(" ", "-")}`);
     }, 100);
   };
 
