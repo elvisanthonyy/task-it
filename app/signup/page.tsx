@@ -27,13 +27,13 @@ const page = () => {
         <div className="before:content[''] before:border-1 before:flex before:w-[49%] before:border-gray-600 before:mr-3 after:content[''] after:border-[1px] after:ml-3 after:flex after:w-[49%] after:border-gray-600 w-full flex justify-center items-center">
           with
         </div>
-        <a
-          href="/api/auth/signin"
-          className="flex my-2 mt-7 mx-auto justify-center items-center hover:rounded-[60px] w-full h-13 bg-white/10 rounded-xl border-white border-1 text-white"
+        <div
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+          className="flex my-2 transition-all 1s ease-in-out hover:bg-white hover:text-black mt-10 mx-auto justify-center items-center rounded-[42px] w-full h-13 bg-white/10  border-white border-1 text-white"
         >
-          <FaGoogle className="mr-3 text-lg" />
-          <div className="">Google</div>
-        </a>
+          <FaGoogle className="mr-3 transition-all 1s ease-in text-lg" />
+          <div className="transition-all 1s ease-in">Google</div>
+        </div>
       </div>
     </div>
   );

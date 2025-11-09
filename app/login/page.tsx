@@ -21,7 +21,7 @@ const page = () => {
         </div>
 
         <div>
-          Don't have an account?
+          Don&apos;t have an account?
           <Link href="/signup">
             <span className="text-blue-500 ml-3">Sign Up</span>
           </Link>
