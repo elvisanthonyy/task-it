@@ -1,11 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import { useListListContext } from "../context/ListContext";
 import { redirect } from "next/navigation";
 import axios from "axios";
-import { HiDotsVertical, HiCheck } from "react-icons/hi";
-import api from "../utils/api";
+import { HiCheck } from "react-icons/hi";
 
 interface ChildProps {
   list: List;
@@ -20,8 +18,24 @@ interface List {
   createdAt: Date;
 }
 const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
-  const { currentList, setCurrentList } = useListListContext();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setCurrentList } = useListListContext();
+  /*const [isMenuOpen, setIsMenuOpen] = useState(false);
+  <div
+        className={`flex-col  justify-between items-center p-5 absolute -right-10 -bottom-10 w-30 h-30 bg-black ${
+          isMenuOpen ? "flex" : "hidden"
+        }`}
+      >
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteList();
+          }}
+          className="cursor-pointer px-3 text-red-600 "
+        >
+          delete list
+        </button>
+        <button onClick={(e) => e.stopPropagation()}>Edit title</button>
+      </div>*/
   const date = new Date(list.createdAt);
   const listLink = () => {
     setCurrentList(list);
@@ -35,7 +49,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
       .post("/api/list/delete", {
         id: list._id,
       })
-      .then((response) => {})
+      .then()
       .catch((error) => {
         console.log(error);
       });
@@ -72,23 +86,6 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
         >
           {selectedList._id === list._id && <HiCheck />}
         </div>
-      </div>
-
-      <div
-        className={`flex-col justify-between items-center p-5 absolute -right-10 -bottom-10 w-30 h-30 bg-black ${
-          isMenuOpen ? "flex" : "hidden"
-        }`}
-      >
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            deleteList();
-          }}
-          className="cursor-pointer px-3 text-red-600 "
-        >
-          delete list
-        </button>
-        <button onClick={(e) => e.stopPropagation()}>Edit title</button>
       </div>
 
       <div className=" p-1 px-3 text-[12px] text-gray-300">

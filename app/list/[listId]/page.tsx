@@ -1,10 +1,8 @@
 import React from "react";
 import Nav from "@/app/component/nav";
 import ListMain from "@/app/component/ListMain";
-import { isDataView } from "util/types";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { useListListContext } from "@/app/context/ListContext";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import { redirect } from "next/navigation";
 

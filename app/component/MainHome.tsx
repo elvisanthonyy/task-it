@@ -3,14 +3,10 @@ import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
 import AddListModal from "./AddListModal";
 import { useSession } from "next-auth/react";
-import axios from "axios";
 import ListComponent from "./ListComponent";
-import { useListListContext } from "../context/ListContext";
-import { HiDotsVertical } from "react-icons/hi";
 import NavigationButtons from "./NavigationButtons";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import api from "@/app/utils/api";
-import { toast } from "react-toastify";
 
 interface List {
   _id: string;
@@ -33,16 +29,16 @@ const MainHome = () => {
   const [isListModalOpen, setIsListModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState({
+  /*const [loading, setLoading] = useState({
     getList: false,
     deleteList: false,
     editList: false,
-  });
+  })*/
   const [lists, setLists] = useState<List[]>([]);
   const [listTitle, setListTitle] = useState<string>("");
-  const data = {
+  /*const data = {
     id: session?.user?.id,
-  };
+  };*/
 
   const openModal = useCallback(() => setIsListModalOpen(true), []);
   const deleteList = () => {
@@ -190,7 +186,7 @@ const MainHome = () => {
           >
             +
           </div>
-          {lists?.map((list, index) => (
+          {lists?.map((list) => (
             <div key={list._id}>
               <ListComponent
                 list={list}

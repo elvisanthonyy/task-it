@@ -1,8 +1,7 @@
 import React from "react";
 import { getSession } from "@/libs/session";
-import { GoChecklist, GoPerson } from "react-icons/go";
+import { GoChecklist } from "react-icons/go";
 import { FaUser } from "react-icons/fa";
-import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 
 const nav = async () => {
@@ -28,7 +27,7 @@ const nav = async () => {
           </div>
         </Link>
         <div className="flex items-center justify-end w-[40%]">
-          <GoChecklist className="text-2xl mr-3 " />
+          <GoChecklist className="text-2xl mr-3" />
           <div className="text-md cursor-pointer">Task It</div>
         </div>
       </nav>

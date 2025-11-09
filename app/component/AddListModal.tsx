@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import api from "../utils/api";
 

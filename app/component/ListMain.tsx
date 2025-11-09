@@ -1,10 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import ItemComponent from "./ItemComponent";
 import api from "../utils/api";
 import { MdClose } from "react-icons/md";
-import Link from "next/link";
 
 interface ChildProps {
   list: List;
@@ -30,7 +28,7 @@ export interface Item {
 const ListMain = ({ list }: ChildProps) => {
   const [isAdditemOpen, setIsAddItemOpen] = useState(false);
   const [items, setItems] = useState<Item[]>([]);
-  const [itemsLen, setItemsLen] = useState(list?.items.length);
+  const [itemsLen] = useState(list?.items?.length);
   const [name, setName] = useState("");
   const data = {
     id: list?._id,
@@ -39,7 +37,7 @@ const ListMain = ({ list }: ChildProps) => {
   const addList = () => {
     api
       .post("/api/additem", data)
-      .then((response) => {
+      .then(() => {
         console.log("done");
         setIsAddItemOpen(false);
         setName("");

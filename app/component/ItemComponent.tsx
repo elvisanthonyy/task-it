@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Item } from "./ListMain";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
 import api from "../utils/api";

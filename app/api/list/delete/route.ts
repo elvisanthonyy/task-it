@@ -1,4 +1,3 @@
-import { NextApiResponse } from "next";
 import dbConnect from "@/libs/dbConnection";
 import { List } from "@/app/models/list";
 import { Item } from "@/app/models/item";

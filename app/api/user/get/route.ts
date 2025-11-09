@@ -4,9 +4,9 @@ import { User } from "@/app/models/user";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
-interface ListBody {
+/*interface ListBody {
   id: string;
-}
+}*/
 
 const handler = async (req: NextRequest) => {
   dbConnect();

@@ -2,7 +2,6 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { User } from "@/app/models/user";
 import dbConnect from "@/libs/dbConnection";
-import { error } from "console";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
@@ -22,7 +21,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ profile }) {
       await dbConnect();
       if (!profile?.email) {
         throw new Error("No profile");

@@ -3,11 +3,11 @@ import dbConnect from "@/libs/dbConnection";
 import { List } from "@/app/models/list";
 import { getSession } from "@/libs/session";
 
-interface ListBody {
+/*interface ListBody {
   id: string;
-}
+}*/
 
-const handler = async (req: NextRequest) => {
+const handler = async () => {
   dbConnect();
   const session = await getSession();
   if (!session) {
