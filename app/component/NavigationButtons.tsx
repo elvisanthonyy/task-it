@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { GoArrowLeft, GoHomeFill } from "react-icons/go";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

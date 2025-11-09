@@ -2,7 +2,6 @@
 import React from "react";
 import { useListListContext } from "../context/ListContext";
 import { redirect } from "next/navigation";
-import axios from "axios";
 import { HiCheck } from "react-icons/hi";
 
 interface ChildProps {
