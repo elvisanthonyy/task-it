@@ -7,9 +7,7 @@ import NavigationButtons from "./component/NavigationButtons";
 export default async function Home() {
   const session = await getSession();
   console.log("SESSION", session);
-  if (!session) {
-    redirect("/login");
-  }
+
   return (
     <>
       <div>
