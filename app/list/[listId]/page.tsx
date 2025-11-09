@@ -1,13 +1,12 @@
 import React from "react";
 import Nav from "@/app/component/nav";
 import ListMain from "@/app/component/ListMain";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+import { getSession } from "@/libs/session";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { listId: string } }) => {
-  const session = await getServerSession(authOptions);
+  const session = await getSession();
   if (!session) {
     redirect("login");
   }
@@ -24,7 +23,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
     }),
   });
   const data = await res.json();
-
+  console.log(data);
   return (
     <>
       <div className="flex justify-center w-full h-screen ">
