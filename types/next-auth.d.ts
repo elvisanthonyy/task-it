@@ -16,7 +16,7 @@ declare module "next-auth" {
     id?: string;
   }
 
-  interface Session {
+  interface jwt {
     accessToken?: string;
     idToken?: string;
   }
