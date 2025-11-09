@@ -3,6 +3,7 @@ import React from "react";
 import { GoChecklist } from "react-icons/go";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const page = () => {
   return (
