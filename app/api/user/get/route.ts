@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import dbConnect from "@/libs/dbConnection";
 import { User } from "@/app/models/user";
 import { getServerSession } from "next-auth";
@@ -8,7 +8,7 @@ import { authOptions } from "../../auth/[...nextauth]/route";
   id: string;
 }*/
 
-const handler = async (req: NextRequest) => {
+const handler = async () => {
   dbConnect();
   const session = await getServerSession(authOptions);
   console.log(session);

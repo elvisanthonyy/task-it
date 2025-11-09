@@ -8,7 +8,7 @@ const handler = async () => {
   try {
     const users = await User.find();
     return NextResponse.json({ users: users });
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
     return NextResponse.json({ error: "could not retrieve data" });
   }

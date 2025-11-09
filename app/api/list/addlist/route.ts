@@ -29,7 +29,7 @@ const handler = async (req: Request) => {
       status: "okay",
       message: "list has been added",
     });
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
     return NextResponse.json({
       status: "error",

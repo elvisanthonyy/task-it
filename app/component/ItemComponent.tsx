@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Item } from "./ListMain";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
@@ -18,7 +18,9 @@ const ItemComponent = ({ item, index }: ChildProps) => {
   const [status, setStatus] = useState("not done");
 
   const setDoneApi = () => {
-    status === "not done" ? (varStatus = "done") : (varStatus = "not done");
+    if (status === "not done") {
+      varStatus = "done";
+    } else varStatus = "not done";
     setStatus(varStatus);
     api
       .post("/api/item/setstatus", {
@@ -73,7 +75,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
   };
   useEffect(() => {
     setStatus(item.status);
-  }, []);
+  }, [item.status]);
   return (
     <div
       key={item._id}

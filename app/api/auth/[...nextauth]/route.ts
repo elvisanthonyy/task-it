@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
         throw new Error("No profile");
       }
 
-      const user: any = await User.findOne({ email: profile.email });
+      const user = await User.findOne({ email: profile.email });
       if (!user) {
         const user = new User({
           name: profile.name,
@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     async jwt({ account, profile, token }) {
-      const user: any = await User.findOne({ email: profile?.email });
+      const user = await User.findOne({ email: profile?.email });
       if (account) {
         token.accessToken = account?.access_token;
         token.idToken = account?.id_token;
@@ -56,9 +56,11 @@ export const authOptions: NextAuthOptions = {
       await dbConnect();
       const dbUser = await User.findOne({ email: session.user?.email });
       if (dbUser) {
-        session.accessToken = token.accessToken as string;
-        session.idToken = token.idToken as string;
-        (session.user as any).id = dbUser._id.toString();
+        if (session?.user) {
+          session.accessToken = token.accessToken as string;
+          session.idToken = token.idToken as string;
+          session.user.id = dbUser._id.toString();
+        }
       }
 
       return session;

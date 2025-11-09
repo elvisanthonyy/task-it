@@ -46,7 +46,7 @@ const MainHome = () => {
       .post("/api/list/delete", {
         id: selectedList._id,
       })
-      .then((response) => {
+      .then(() => {
         setIsDeleteModalOpen(false);
       })
       .catch((error) => {
@@ -92,7 +92,7 @@ const MainHome = () => {
           console.log(error);
         });
     }
-  }, [session?.user?.email, status]);
+  }, [session?.user?.email, status, session?.user?.id]);
 
   return (
     <div>

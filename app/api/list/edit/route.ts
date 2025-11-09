@@ -14,7 +14,6 @@ const handler = async (req: Request) => {
     );
   }
 
-  const token = authHeader.split(" ")[1];
   try {
     //const decoded = verifyToken(token);
     const body = (await req.json()) as ListBody;

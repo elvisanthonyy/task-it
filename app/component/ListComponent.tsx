@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useListListContext } from "../context/ListContext";
 import { redirect } from "next/navigation";
 import axios from "axios";
@@ -44,7 +44,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
     }, 100);
   };
 
-  const deleteList = () => {
+  /*const deleteList = () => {
     axios
       .post("/api/list/delete", {
         id: list._id,
@@ -53,7 +53,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
       .catch((error) => {
         console.log(error);
       });
-  };
+  };*/
   return (
     <div
       onClick={listLink}
