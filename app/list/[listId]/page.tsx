@@ -14,7 +14,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
   }
   const list = await params;
   const firstId = list.listId.split("-")[0];
-  console.log(firstId);
+
   const res = await fetch("http://localhost:3000/api/get/list", {
     method: "POST",
     headers: {
@@ -26,7 +26,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
     }),
   });
   const data = await res.json();
-  console.log(data);
+
   return (
     <>
       <div className="flex justify-center w-full h-screen ">

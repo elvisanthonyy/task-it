@@ -10,6 +10,7 @@ interface ListBody {
 const handler = async (req: Request) => {
   dbConnect();
   const session = await getSession();
+  console.log("session", session);
   if (!session) {
     return NextResponse.json({ message: "session not found" });
   }

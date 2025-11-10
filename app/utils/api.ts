@@ -16,7 +16,6 @@ interface UserBody {
 const api = axios.create({
   baseURL: process.env.BASE_URL,
   headers: { "Content-Type": "application/json" },
-  withCredentials: true,
 });
 
 api.interceptors.request.use(async (config) => {
