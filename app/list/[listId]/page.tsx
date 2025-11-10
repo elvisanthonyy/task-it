@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { listId: string } }) => {
   const cookieHeader = (await cookies()).toString();
+  const basesURL = process.env.BASE_URL;
   const session = await getSession();
   if (!session) {
     redirect("login");
@@ -15,7 +16,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
   const list = await params;
   const firstId = list.listId.split("-")[0];
 
-  const res = await fetch("http://localhost:3000/api/get/list", {
+  const res = await fetch(`${basesURL}/api/get/list`, {
     method: "POST",
     headers: {
       Cookie: cookieHeader,

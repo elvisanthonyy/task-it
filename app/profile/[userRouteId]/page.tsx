@@ -7,9 +7,10 @@ import { cookies } from "next/headers";
 const page = async () => {
   const session = await getSession();
   const cookieHeader = (await cookies()).toString();
+  const basesURL = process.env.BASE_URL;
   if (!session) return redirect("login");
 
-  const res = await fetch("http://localhost:3000/api/user/get", {
+  const res = await fetch(`${basesURL}/api/user/get`, {
     method: "GET",
     headers: {
       Cookie: cookieHeader,
