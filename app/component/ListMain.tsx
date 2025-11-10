@@ -75,7 +75,7 @@ const ListMain = ({ list }: ChildProps) => {
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [addList]);
 
   return (
     <div className="overflow-hidden relative flex flex-col items-center mt-20 w-full h-[80%]">
