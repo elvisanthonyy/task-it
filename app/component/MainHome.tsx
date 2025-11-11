@@ -1,6 +1,7 @@
 "use client";
 import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import AddListModal from "./AddListModal";
 import { useSession } from "next-auth/react";
 import ListComponent from "./ListComponent";
@@ -49,8 +50,19 @@ const MainHome = () => {
       .post("/api/list/delete", {
         id: selectedList._id,
       })
-      .then(() => {
-        setIsDeleteModalOpen(false);
+      .then((response) => {
+        if (response.data.status === "okay") {
+          toast.success(response.data.message);
+          setIsDeleteModalOpen(false);
+          setSelectedList({
+            _id: "",
+            title: "",
+            items: [],
+            createdAt: new Date(),
+          });
+        } else {
+          toast.error(response.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -201,20 +213,27 @@ const MainHome = () => {
             ) : (
               ""
             )}
-
-            {lists?.map((list) => (
-              <div
-                onClick={() => listLink(list)}
-                key={list._id}
-                className="relative aspect-square shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
-              >
-                <ListComponent
-                  list={list}
-                  selectedList={selectedList}
-                  setSelectedList={setSelectedList}
-                />
+            {lists?.length === 0 ? (
+              <div className="absolute top-[50%] left-[50%] -translate-[50%]">
+                No list
               </div>
-            ))}
+            ) : (
+              <>
+                {lists?.map((list) => (
+                  <div
+                    onClick={() => listLink(list)}
+                    key={list._id}
+                    className="relative aspect-square shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
+                  >
+                    <ListComponent
+                      list={list}
+                      selectedList={selectedList}
+                      setSelectedList={setSelectedList}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
           </div>
           <div
             onClick={openModal}

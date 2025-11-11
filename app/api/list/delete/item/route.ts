@@ -1,9 +1,11 @@
 import dbConnect from "@/libs/dbConnection";
 import { Item } from "@/app/models/item";
 import { NextResponse } from "next/server";
+import { List } from "@/app/models/list";
 
 interface ItemBody {
   id: string;
+  listId: string;
 }
 
 const handler = async (req: Request) => {
@@ -20,6 +22,9 @@ const handler = async (req: Request) => {
   try {
     const body = (await req.json()) as ItemBody;
     await Item.findByIdAndDelete(body?.id);
+    const list = await List.findById(body?.listId);
+    console.log(list);
+    await List.updateOne({ _id: body?.listId }, { $pull: { items: body?.id } });
     return NextResponse.json({ message: "item deleted" });
   } catch (error) {
     console.log(error);

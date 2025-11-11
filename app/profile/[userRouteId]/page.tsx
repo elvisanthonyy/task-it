@@ -25,7 +25,9 @@ const page = async () => {
       <div className="flex flex-col w-full px-[6%]">
         <div className="mt-30">{`Name: ${data?.user?.name}`}</div>
         <div className="mt-4">{`Email: ${data?.user?.email}`}</div>
-        <div className="mt-4">{`Lists: ${data?.user?.list?.length}`}</div>
+        <div className="mt-4">{`Lists: ${
+          data?.user?.lists?.length ? data?.user?.lists?.length : "0"
+        }`}</div>
         <div className="mt-4">
           {" "}
           {`Account Creattion: ${

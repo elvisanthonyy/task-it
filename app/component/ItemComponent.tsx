@@ -9,9 +9,10 @@ import { toast } from "react-toastify";
 interface ChildProps {
   item: Item;
   index: number;
+  listId?: string;
 }
 
-const ItemComponent = ({ item, index }: ChildProps) => {
+const ItemComponent = ({ item, index, listId }: ChildProps) => {
   const [inputState, setInputState] = useState<boolean>(true);
   const [name, setName] = useState<string>(item.name);
   let varStatus;
@@ -37,6 +38,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
     api
       .post("/api/list/delete/item", {
         id: item._id,
+        listId: listId,
       })
       .then((response) => {
         if (response.data.message === "item deleted") {

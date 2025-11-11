@@ -111,7 +111,7 @@ const ListMain = ({ list }: ChildProps) => {
       ) : (
         <>
           <div className="block nx:grid px-5 nx:px-0 nx:grid-cols-2 md:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] scrollbar-hide overflow-y-scroll items-center w-[100%]">
-            {items === undefined ? (
+            {items?.length === 0 ? (
               <div className="absolute top-[50%] left-[50%] -translate-[50%]">
                 {" "}
                 no items{" "}
@@ -119,7 +119,7 @@ const ListMain = ({ list }: ChildProps) => {
             ) : (
               items?.map((item, index) => (
                 <div key={item._id}>
-                  <ItemComponent item={item} index={index} />
+                  <ItemComponent listId={list._id} item={item} index={index} />
                 </div>
               ))
             )}
