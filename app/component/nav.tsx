@@ -37,7 +37,7 @@ const nav = async ({ name }: ChildProps) => {
               name === "profile" && "hidden"
             } cursor-pointer items-center justify-start `}
           >
-            <div className="flex shrink-0 justify-center items-center w-9 h-9 rounded-full bg-purple-600 mr-4">
+            <div className="flex shrink-0 justify-center items-center w-9 h-9 rounded-full bg-purple-500 mr-4">
               <FaUser className="text-md" />
             </div>
 
