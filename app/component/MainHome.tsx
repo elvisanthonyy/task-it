@@ -218,7 +218,7 @@ const MainHome = () => {
           </div>
           <div
             onClick={openModal}
-            className="cursor-pointer text-3xl fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
+            className="cursor-pointer text-2xl fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
           >
             +
           </div>

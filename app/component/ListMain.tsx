@@ -139,20 +139,20 @@ const ListMain = ({ list }: ChildProps) => {
                     setNameMessage("");
                     setName(e.target.value);
                   }}
-                  className="p-2 px-3 text-[13px] w-[80%] h-12 rounded-2xl border-1 border-task-lightGray focus:outline-none"
+                  className="p-2 px-3 text-[15px] w-[80%] h-13 rounded-2xl border-0 bg-task-gray focus:outline-none"
                 />
 
                 <button
                   type="button"
                   onClick={addItem}
-                  className="flex justify-center items-center text-[13px] rounded-2xl cursor-pointer hover:opacity-70 h-12 w-[20%]  p-2 bg-white text-black ml-2"
+                  className="flex justify-center items-center text-2xl rounded-2xl cursor-pointer hover:opacity-70 h-13 w-[20%]  p-2 bg-white text-black ml-2"
                 >
                   {loading.addItem ? <LoadingComponent /> : "+"}
                 </button>
               </div>
             </form>
             <div
-              className="fixed text-3xl left-[6%] bottom-25 my-3 bg-white cursor-pointer text-black h-15 w-15 flex justify-center items-center rounded-[50%]"
+              className="fixed text-2xl left-[6%] bottom-25 my-3 bg-white cursor-pointer text-black h-15 w-15 flex justify-center items-center rounded-[50%]"
               onClick={openCloseAddItem}
             >
               {!isAdditemOpen ? "+" : <MdClose />}

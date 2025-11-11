@@ -79,14 +79,14 @@ const ItemComponent = ({ item, index }: ChildProps) => {
   return (
     <div
       key={item._id}
-      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-[90%] h-13 pr-4  bg-task-lightGray/30 my-3 mb-4"
+      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-[90%] h-14 pr-4  bg-task-lightGray/30 my-3 mb-4"
     >
       <div className="flex h-full items-center w-[60%]">
-        <div className="pl-4 text-green-400">{index + 1}.</div>
+        <div className="pl-4 text-[16px] text-green-400">{index + 1}.</div>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className={`h-[70%] rounded-md mx-1 pl-2 w-[90%] ${
+          className={`h-[70%] text-[16px] rounded-md mx-1 pl-2 w-[90%] ${
             inputState ? "outline-0" : "outline-1"
           } `}
           disabled={inputState}
@@ -99,7 +99,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
           onClick={() => setInputState(false)}
         >
           {inputState ? (
-            <FiEdit className="text-[16px] shrink-0 text-task-darkWhite" />
+            <FiEdit className="text-[19px] shrink-0 text-task-darkWhite" />
           ) : (
             <HiCheck
               className="text-[18px] shrink-0 text-task-darkWhite"
@@ -110,7 +110,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
 
         <div
           onClick={setDoneApi}
-          className={`cursor-pointer shrink-0 flex justify-center ml-2 items-center w-[16px] h-[16px] rounded-[50%] ${
+          className={`cursor-pointer shrink-0 flex justify-center ml-2 items-center w-[19px] h-[19px] rounded-[50%] ${
             status === "done"
               ? "bg-green-600"
               : "border-1 border-task-darkWhite"
@@ -121,7 +121,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
 
         <FaTrashAlt
           onClick={deleteItem}
-          className="cursor-pointer ml-2 text-[13px] text-task-darkWhite shrink-0"
+          className="cursor-pointer ml-2 text-[16px] text-task-darkWhite shrink-0"
         />
       </div>
     </div>

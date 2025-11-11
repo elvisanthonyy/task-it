@@ -36,12 +36,6 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
         <button onClick={(e) => e.stopPropagation()}>Edit title</button>
       </div>*/
   const date = new Date(list.createdAt);
-  const listLink = () => {
-    setCurrentList(list);
-    setTimeout(() => {
-      redirect(`/list/${list._id}-${list.title.replaceAll(" ", "-")}`);
-    }, 100);
-  };
 
   /*const deleteList = () => {
     axios
