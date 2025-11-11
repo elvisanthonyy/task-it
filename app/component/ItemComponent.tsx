@@ -79,7 +79,7 @@ const ItemComponent = ({ item, index }: ChildProps) => {
   return (
     <div
       key={item._id}
-      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-[90%] h-12 pr-4  bg-task-lightGray/30 my-3 mb-4"
+      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-[90%] h-13 pr-4  bg-task-lightGray/30 my-3 mb-4"
     >
       <div className="flex h-full items-center w-[60%]">
         <div className="pl-4 text-green-400">{index + 1}.</div>

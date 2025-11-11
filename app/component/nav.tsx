@@ -33,22 +33,22 @@ const nav = async ({ name }: ChildProps) => {
           className="flex w-[60%] justify-start"
         >
           <div className="flex shrink-0  cursor-pointer items-center justify-start ">
-            <div className="flex justify-center items-center w-7 h-7 rounded-full bg-purple-600 mr-4">
+            <div className="flex shrink-0 justify-center items-center w-9 h-9 rounded-full bg-purple-600 mr-4">
               <FaUser className="text-md" />
             </div>
 
-            <div className="text-md font-semibold mr-2 text-shadow-task-darkWhite">
+            <div className="text-lg font-semibold mr-2 text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[0]}
             </div>
-            <div className="text-md text-shadow-task-darkWhite">
+            <div className="text-lg text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[1]}
             </div>
           </div>
         </Link>
 
         <div className="flex items-center justify-end w-[40%]">
-          <GoChecklist className="text-2xl mr-3" />
-          <div className="text-md cursor-pointer">Task It</div>
+          <GoChecklist className="text-3xl mr-3" />
+          <div className="text-lg cursor-pointer">Task It</div>
         </div>
       </nav>
     </>

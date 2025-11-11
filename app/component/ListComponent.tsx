@@ -54,7 +54,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
       });
   };*/
   return (
-    <div onClick={listLink}>
+    <div>
       <div
         onClick={(e) => e.stopPropagation()}
         className="flex items-start justify-between w-full px-3 absolute top-5 left-[50%] -translate-x-[50%]"

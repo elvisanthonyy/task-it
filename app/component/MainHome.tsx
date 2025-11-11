@@ -7,7 +7,7 @@ import ListComponent from "./ListComponent";
 import NavigationButtons from "./NavigationButtons";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import api from "@/app/utils/api";
-import LoadingComponent from "./LoadingComponent";
+import { redirect } from "next/navigation";
 import MainCompLoading from "./MainCompLoading";
 
 interface List {
@@ -97,6 +97,12 @@ const MainHome = () => {
       });
   };
 
+  const listLink = (listPar: List) => {
+    //setCurrentList(list);
+    setTimeout(() => {
+      redirect(`/list/${listPar._id}-${listPar.title.replaceAll(" ", "-")}`);
+    }, 100);
+  };
   useEffect(() => {
     if (status === "authenticated") {
       getLists();
@@ -198,6 +204,7 @@ const MainHome = () => {
 
             {lists?.map((list) => (
               <div
+                onClick={() => listLink(list)}
                 key={list._id}
                 className="relative aspect-square shrink-0 py-3 mx-auto px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
               >
@@ -211,7 +218,7 @@ const MainHome = () => {
           </div>
           <div
             onClick={openModal}
-            className="cursor-pointer fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
+            className="cursor-pointer text-3xl fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
           >
             +
           </div>
