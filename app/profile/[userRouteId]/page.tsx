@@ -26,11 +26,11 @@ const page = async () => {
   return (
     <div>
       <Nav name="profile" />
-      <div className="flex pt-30 flex-col w-full px-[6%]">
-        <div className="flex mx-auto border-4 border-blue-500 justify-center items-center w-[50%] aspect-square bg-purple-600 rounded-full">
+      <div className="flex mt-5 pt-30 flex-col w-full px-[6%]">
+        <div className="flex mx-auto border-3 border-t-blue-600 border-b-blue-600 justify-center items-center w-[50%] aspect-square bg-purple-600 rounded-full">
           <FaUser className="text-6xl text-task-darkWhite" />
         </div>
-        <div className="relative flex h-15 w-full mt-10 items-start">
+        <div className="relative flex h-15 w-full mt-15 items-start">
           <div className="flex h-full items-start mt-2 mr-4">
             <FaUser className=" text-lg text-task-lightGray" />
           </div>

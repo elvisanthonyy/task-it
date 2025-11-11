@@ -122,7 +122,7 @@ const MainHome = () => {
   }, [session?.user?.email, status, session?.user?.id]);
 
   return (
-    <main className="flex min-h-[90vh] flex-col items-center justify-start mt-28 w-full">
+    <main className="flex min-h-[90vh] flex-col items-center justify-start mt-25 w-full">
       <div
         className={`z-20 px-6 transition-all duration-500 ease-in-out ${
           selectedList._id.length > 0
