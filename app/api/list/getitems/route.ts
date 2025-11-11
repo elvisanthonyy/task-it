@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/libs/dbConnection";
 import { Item } from "@/app/models/item";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 interface ListBody {
   listId: string;
@@ -9,8 +10,8 @@ interface ListBody {
 
 const handler = async (req: Request) => {
   dbConnect();
-  const session = await getSession();
-  console.log("session", session);
+  const session = await getServerSession(authOptions);
+
   if (!session) {
     return NextResponse.json({ message: "session not found" });
   }

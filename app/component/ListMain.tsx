@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import ItemComponent from "./ItemComponent";
 import api from "../utils/api";
 import { MdClose } from "react-icons/md";
+import ItemsCompLoading from "./ItemsCompLoading";
+import LoadingComponent from "./LoadingComponent";
 
 interface ChildProps {
   list: List;
@@ -28,24 +30,41 @@ export interface Item {
 const ListMain = ({ list }: ChildProps) => {
   const [isAdditemOpen, setIsAddItemOpen] = useState(false);
   const [items, setItems] = useState<Item[]>([]);
-  const [itemsLen] = useState(list?.items?.length);
+  const [itemsLen, setItemsLen] = useState(list?.items?.length);
+  const [nameMessage, setNameMessage] = useState("");
+  const [loading, setLoading] = useState({
+    main: true,
+    addItem: false,
+  });
   const [name, setName] = useState("");
   const data = {
     id: list?._id,
     name: name,
   };
-  const addList = () => {
-    api
-      .post("/api/additem", data)
-      .then(() => {
-        console.log("done");
-        setIsAddItemOpen(false);
-        setName("");
-        fetchItems();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const addItem = () => {
+    setLoading((prev) => ({ ...prev, addItem: true }));
+    if (name.length > 0) {
+      api
+        .post("/api/additem", data)
+        .then((response) => {
+          setLoading((prev) => ({ ...prev, addItem: false }));
+          if (response.data.status === "okay") {
+            fetchItems();
+            setItemsLen(itemsLen + 1);
+            setIsAddItemOpen(false);
+            setName("");
+          }
+
+          //fetchItems();
+        })
+        .catch((error) => {
+          setLoading((prev) => ({ ...prev, addItem: false }));
+          console.log(error);
+        });
+    } else {
+      setNameMessage("Item name can not be blank");
+      setLoading((prev) => ({ ...prev, addItem: false }));
+    }
   };
 
   const openCloseAddItem = () => {
@@ -64,64 +83,83 @@ const ListMain = ({ list }: ChildProps) => {
 
   const fetchItems = () => {
     api
-      .post<ResponseItem>("/api/list/getitems", list._id)
+      .post<ResponseItem>("/api/list/getitems", { listId: list._id })
       .then((response) => {
+        setLoading((prev) => ({ ...prev, main: false }));
+        setNameMessage("");
         setItems(response.data.items);
       })
       .catch((error) => {
+        setNameMessage("");
+        setLoading((prev) => ({ ...prev, main: false }));
         console.log(error);
       });
   };
 
   useEffect(() => {
     fetchItems();
-  }, [addList]);
+  }, []);
 
   return (
-    <div className="overflow-hidden relative flex flex-col items-center mt-20 w-full h-[80%]">
-      <div className="flex items-center text-sm text-shadow-task-darkWhite justify-between z-5 px-[8%] h-16 mb-2 w-[100%]  border-white left-0">
+    <div className="overflow-hidden relative flex flex-col items-center w-full h-[80%]">
+      <div className="flex shrink-0 items-center border-b-1 text-sm text-shadow-task-darkWhite justify-between z-5 px-[5%] h-20 mb-2 w-[100%]  border-white left-0">
         <div>{list?.title}</div>
         <div>{`Items: ${itemsLen}`}</div>
       </div>
-      <div className="block nx:grid px-5 nx:px-0 nx:grid-cols-2 md:grid-cols-3 min-w-full nx:items-start mt-0 h-[90%] scrollbar-hide overflow-y-scroll items-center w-[100%]">
-        {items === undefined ? (
-          <div className="absolute top-[50%] left-[50%] -translate-[50%]">
-            {" "}
-            no items{" "}
-          </div>
-        ) : (
-          items?.map((item, index) => (
-            <div key={item._id}>
-              <ItemComponent item={item} index={index} />
-            </div>
-          ))
-        )}
+      {loading.main ? (
+        <ItemsCompLoading />
+      ) : (
+        <>
+          <div className="block nx:grid px-5 nx:px-0 nx:grid-cols-2 md:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] scrollbar-hide overflow-y-scroll items-center w-[100%]">
+            {items === undefined ? (
+              <div className="absolute top-[50%] left-[50%] -translate-[50%]">
+                {" "}
+                no items{" "}
+              </div>
+            ) : (
+              items?.map((item, index) => (
+                <div key={item._id}>
+                  <ItemComponent item={item} index={index} />
+                </div>
+              ))
+            )}
 
-        <form
-          className={` my-2 w-full mt-6 items-center justify-between  ${
-            isAdditemOpen ? "flex" : "hidden"
-          }`}
-        >
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="p-2 text-[13px] w-[80%] h-9 rounded-md border-1 border-task-lightGray"
-          />
-          <button
-            type="button"
-            onClick={addList}
-            className="text-[13px] rounded-md cursor-pointer hover:opacity-70 h-9 w-[20%] p-1 bg-white text-black ml-2"
-          >
-            +
-          </button>
-        </form>
-        <div
-          className="absolute left-10 bottom-10 my-3 bg-white cursor-pointer text-black h-11 w-11 flex justify-center items-center rounded-[50%]"
-          onClick={openCloseAddItem}
-        >
-          {!isAdditemOpen ? "+" : <MdClose />}
-        </div>
-      </div>
+            <form
+              className={`flex-col w-full mt-4 ${
+                isAdditemOpen ? "flex" : "hidden"
+              }`}
+            >
+              <div className="w-full text-sm text-red-500  px-2">
+                {nameMessage}
+              </div>
+              <div className="flex my-2 w-full  items-center justify-between ">
+                <input
+                  value={name}
+                  onChange={(e) => {
+                    setNameMessage("");
+                    setName(e.target.value);
+                  }}
+                  className="p-2 px-3 text-[13px] w-[80%] h-12 rounded-2xl border-1 border-task-lightGray focus:outline-none"
+                />
+
+                <button
+                  type="button"
+                  onClick={addItem}
+                  className="flex justify-center items-center text-[13px] rounded-2xl cursor-pointer hover:opacity-70 h-12 w-[20%]  p-2 bg-white text-black ml-2"
+                >
+                  {loading.addItem ? <LoadingComponent /> : "+"}
+                </button>
+              </div>
+            </form>
+            <div
+              className="fixed left-[5%] bottom-25 my-3 bg-white cursor-pointer text-black h-15 w-15 flex justify-center items-center rounded-[50%]"
+              onClick={openCloseAddItem}
+            >
+              {!isAdditemOpen ? "+" : <MdClose />}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

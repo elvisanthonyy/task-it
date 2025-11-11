@@ -3,34 +3,44 @@ import React from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../utils/api";
+import LoadingComponent from "./LoadingComponent";
 
 interface ChildProps {
   setIsListModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  getList: () => void;
 }
 
-const AddListModal = ({ setIsListModalOpen }: ChildProps) => {
+const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const id = localStorage.getItem("userId");
   const data: object = {
     id: id,
     title: title,
   };
   const addList = () => {
+    setLoading(true);
     api
       .post("/api/list/addlist", data)
       .then((response) => {
-        toast.success(response.data.message);
-        if (response.data.status === "okay") return setIsListModalOpen(false);
-        alert("somethhing went wrong");
+        setLoading(false);
+        if (response.data.status === "okay") {
+          toast.success(response.data.message);
+          setIsListModalOpen(false);
+          getList();
+        } else {
+          toast.error(response.data.message);
+        }
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
   };
   return (
     <div
       onClick={() => setIsListModalOpen(false)}
-      className="z-30 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-screen bg-black/60"
+      className="z-80 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-screen bg-black/60"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -49,9 +59,9 @@ const AddListModal = ({ setIsListModalOpen }: ChildProps) => {
           </div>
           <div
             onClick={addList}
-            className="cursor-pointer text-sm flex justify-center items-center w-[90%] h-10 mt-10 bg-white rounded-xl text-black"
+            className="cursor-pointer text-sm flex justify-center items-center mt-auto w-[90%] h-10 bg-white rounded-xl text-black"
           >
-            Add
+            {loading ? <LoadingComponent /> : "Add"}
           </div>
         </form>
       </div>

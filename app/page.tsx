@@ -14,9 +14,11 @@ export default async function Home() {
 
   return (
     <>
-      <Nav />
-      <MainHome />
-      <NavigationButtons pageName="home" />
+      <div className="flex flex-col  min-h-screen">
+        <Nav />
+        <MainHome />
+        <NavigationButtons pageName="home" />
+      </div>
     </>
   );
 }

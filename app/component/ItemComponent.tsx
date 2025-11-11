@@ -86,7 +86,9 @@ const ItemComponent = ({ item, index }: ChildProps) => {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="h-full pl-2 w-[90%] outline-0"
+          className={`h-[70%] rounded-md mx-1 pl-2 w-[90%] ${
+            inputState ? "outline-0" : "outline-1"
+          } `}
           disabled={inputState}
         />
       </div>

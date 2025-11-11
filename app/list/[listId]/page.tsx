@@ -1,5 +1,4 @@
 import React from "react";
-import Nav from "@/app/component/nav";
 import ListMain from "@/app/component/ListMain";
 import { getSession } from "@/libs/session";
 import NavigationButtons from "@/app/component/NavigationButtons";
@@ -31,7 +30,6 @@ const page = async ({ params }: { params: { listId: string } }) => {
   return (
     <>
       <div className="flex justify-center w-full h-screen ">
-        <Nav />
         <ListMain list={data.list} />
         <NavigationButtons />
       </div>

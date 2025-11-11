@@ -54,15 +54,12 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
       });
   };*/
   return (
-    <div
-      onClick={listLink}
-      className="aspect-square py-3 mx-auto relative px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%] h-auto  bg-task-gray hover:opacity-75"
-    >
+    <div onClick={listLink}>
       <div
         onClick={(e) => e.stopPropagation()}
         className="flex items-start justify-between w-full px-3 absolute top-5 left-[50%] -translate-x-[50%]"
       >
-        <div className="flex text-sm text-gray-300 px-1 w-25 h-8 overflow-y-hidden overflow-x-hidden">
+        <div className="flextext-sm text-gray-300 px-1 w-25 h-8 overflow-y-hidden overflow-x-hidden">
           {list.title}
         </div>
 

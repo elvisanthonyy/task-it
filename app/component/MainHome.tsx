@@ -7,6 +7,8 @@ import ListComponent from "./ListComponent";
 import NavigationButtons from "./NavigationButtons";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import api from "@/app/utils/api";
+import LoadingComponent from "./LoadingComponent";
+import MainCompLoading from "./MainCompLoading";
 
 interface List {
   _id: string;
@@ -29,6 +31,7 @@ const MainHome = () => {
   const [isListModalOpen, setIsListModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
   /*const [loading, setLoading] = useState({
     getList: false,
     deleteList: false,
@@ -80,125 +83,143 @@ const MainHome = () => {
     setListTitle(selectedList.title);
   };
 
+  const getLists = () => {
+    localStorage.setItem("userId", session?.user?.id ?? "");
+    api
+      .get<ListRes>("/api/user/getlists")
+      .then((res) => {
+        setLoading(false);
+        setLists(res.data.lists);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     if (status === "authenticated") {
-      localStorage.setItem("userId", session?.user?.id ?? "");
-      api
-        .get<ListRes>("/api/user/getlists")
-        .then((res) => {
-          setLists(res.data.lists);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      getLists();
     }
   }, [session?.user?.email, status, session?.user?.id]);
 
   return (
-    <div>
-      <main className="flex flex-col items-center justify-center mt-28 w-full">
+    <main className="flex min-h-[90vh] flex-col items-center justify-start mt-28 w-full">
+      <div
+        className={`z-20 px-6 transition-all duration-500 ease-in-out ${
+          selectedList._id.length > 0
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-60 pointer-events-auto"
+        }  ${
+          selectedList._id.length > 0 ? "flex" : "hidden"
+        } justify-between items-center w-[90%] bg-task-lightGray/20 rounded-2xl h-8 border-1 border-task-lightGray mb-5`}
+      >
         <div
-          className={`z-20 px-6 transition-all duration-500 ease-in-out ${
-            selectedList._id.length > 0
-              ? "opacity-100 scale-100 pointer-events-auto"
-              : "opacity-0 scale-60 pointer-events-auto"
-          }  ${
-            selectedList._id.length > 0 ? "flex" : "hidden"
-          } justify-between items-center w-[90%] bg-task-lightGray/20 rounded-2xl h-8 border-1 border-task-lightGray mb-5`}
+          className="cursor-pointer"
+          onClick={() =>
+            setSelectedList({
+              _id: "",
+              title: "",
+              items: [],
+              createdAt: new Date(),
+            })
+          }
+        >
+          x{" "}
+        </div>
+        <div
+          onClick={() => setIsDeleteModalOpen(false)}
+          className={`z-15 flex justify-center items-center top-0 left-0 ${
+            isDeleteModalOpen ? "fixed" : "hidden"
+          } w-full h-screen bg-black/50`}
         >
           <div
-            className="cursor-pointer"
-            onClick={() =>
-              setSelectedList({
-                _id: "",
-                title: "",
-                items: [],
-                createdAt: new Date(),
-              })
-            }
+            onClick={(e) => e.stopPropagation()}
+            className="w-[50%] h-[20%] rounded-xl bg-white"
           >
-            x{" "}
-          </div>
-          <div
-            onClick={() => setIsDeleteModalOpen(false)}
-            className={`z-15 flex justify-center items-center top-0 left-0 ${
-              isDeleteModalOpen ? "fixed" : "hidden"
-            } w-full h-screen bg-black/50`}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="w-[50%] h-[20%] rounded-xl bg-white"
+            <button onClick={deleteList} className="text-black m-10">
+              yes
+            </button>
+            <button
+              onClick={() => setIsDeleteModalOpen(false)}
+              className="text-black m-10"
             >
-              <button onClick={deleteList} className="text-black m-10">
-                yes
-              </button>
+              No
+            </button>
+          </div>
+        </div>
+        <div
+          onClick={() => setIsEditModalOpen(false)}
+          className={`z-15 flex justify-center items-center top-0 left-0 ${
+            isEditModalOpen ? "fixed" : "hidden"
+          } w-full h-screen bg-black/50`}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-[50%] h-[20%] rounded-xl bg-white"
+          >
+            <form>
+              <input
+                value={listTitle}
+                onChange={(e) => setListTitle(e.target.value)}
+                type="text"
+                className="border-2 border-black text-black"
+              />
               <button
-                onClick={() => setIsDeleteModalOpen(false)}
+                type="button"
+                onClick={editListTitle}
                 className="text-black m-10"
               >
-                No
+                Done
               </button>
-            </div>
+            </form>
           </div>
-          <div
-            onClick={() => setIsEditModalOpen(false)}
-            className={`z-15 flex justify-center items-center top-0 left-0 ${
-              isEditModalOpen ? "fixed" : "hidden"
-            } w-full h-screen bg-black/50`}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="w-[50%] h-[20%] rounded-xl bg-white"
-            >
-              <form>
-                <input
-                  value={listTitle}
-                  onChange={(e) => setListTitle(e.target.value)}
-                  type="text"
-                  className="border-2 border-black text-black"
-                />
-                <button
-                  type="button"
-                  onClick={editListTitle}
-                  className="text-black m-10"
-                >
-                  Done
-                </button>
-              </form>
-            </div>
-          </div>
-          <FaTrashAlt
-            onClick={() => setIsDeleteModalOpen(true)}
-            className="cursor-pointer"
-          />
-          <FaEdit onClick={openEditmodal} className="cursor-pointer" />
         </div>
+        <FaTrashAlt
+          onClick={() => setIsDeleteModalOpen(true)}
+          className="cursor-pointer"
+        />
+        <FaEdit onClick={openEditmodal} className="cursor-pointer" />
+      </div>
+      {loading ? (
+        <MainCompLoading />
+      ) : (
+        <>
+          {" "}
+          <div className="relative grid grid-cols-2 h-[75dvh] sm:grid-cols-3 md:grid-cols-4 w-[95%] gap-y-5 place-content-start items-start ">
+            {isListModalOpen ? (
+              <AddListModal
+                getList={getLists}
+                setIsListModalOpen={setIsListModalOpen}
+              />
+            ) : (
+              ""
+            )}
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 w-[95%] gap-y-5 items-start ">
-          {isListModalOpen ? (
-            <AddListModal setIsListModalOpen={setIsListModalOpen} />
-          ) : (
-            ""
-          )}
+            {lists?.map((list) => (
+              <div
+                key={list._id}
+                className="relative aspect-square shrink-0 py-3 mx-auto px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
+              >
+                <ListComponent
+                  list={list}
+                  selectedList={selectedList}
+                  setSelectedList={setSelectedList}
+                />
+              </div>
+            ))}
+          </div>
           <div
             onClick={openModal}
-            className="cursor-pointer mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-[90%] aspect-square bg-white/10"
+            className="cursor-pointer fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
           >
             +
           </div>
-          {lists?.map((list) => (
-            <div key={list._id}>
-              <ListComponent
-                list={list}
-                selectedList={selectedList}
-                setSelectedList={setSelectedList}
-              />
-            </div>
-          ))}
-        </div>
-        <NavigationButtons />
-      </main>
-    </div>
+        </>
+      )}
+
+      <NavigationButtons />
+    </main>
   );
 };
 
