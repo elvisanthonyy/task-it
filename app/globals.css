@@ -16,6 +16,7 @@
   --color-task-gray: #1d1d1d;
   --color-task-lightGray: #4d4d4d;
   --color-task-darkWhite: #e4e4e4;
+  --color-task-darkerWhite: #afafaf;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,5 +43,5 @@ body {
 }
 
 .help {
-  color: #1d1d1d;
+  color: #afafaf;
 }

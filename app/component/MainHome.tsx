@@ -192,7 +192,7 @@ const MainHome = () => {
       ) : (
         <>
           {" "}
-          <div className="relative grid grid-cols-2 h-[75dvh] sm:grid-cols-3 md:grid-cols-4 w-[95%] gap-y-5 place-content-start items-start ">
+          <div className="relative grid grid-cols-2 h-[75dvh] place-items-center sm:grid-cols-3 md:grid-cols-4 w-[95%] gap-y-5 gap-0 place-content-start items-start ">
             {isListModalOpen ? (
               <AddListModal
                 getList={getLists}
@@ -206,7 +206,7 @@ const MainHome = () => {
               <div
                 onClick={() => listLink(list)}
                 key={list._id}
-                className="relative aspect-square shrink-0 py-3 mx-auto px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
+                className="relative aspect-square shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-[90%]   bg-task-gray hover:opacity-75"
               >
                 <ListComponent
                   list={list}
@@ -218,7 +218,7 @@ const MainHome = () => {
           </div>
           <div
             onClick={openModal}
-            className="cursor-pointer text-2xl fixed right-[5%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-2xl w-15 h-15 mb-30 shrink-0 bg-white"
+            className="cursor-pointer text-2xl fixed right-[7%] text-black bottom-0 mx-auto hover:opacity-50 flex justify-center items-center rounded-full w-15 h-15 mb-30 shrink-0 bg-white"
           >
             +
           </div>

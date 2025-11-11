@@ -25,7 +25,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="text-sm transition-all duration-500 ease-in-out hover:text-white  flex-col justify-around items-center border-1 border-task-darkWhite backdrop-blur-lg shadow-2xl  min-h-15 w-[90%] bg-task-white/10 rounded-4xl"
+        className="text-sm transition-all duration-500 ease-in-out hover:text-white  flex-col justify-around items-center border-1 border-task-darkerWhite backdrop-blur-lg shadow-2xl  min-h-15 w-[90%] bg-task-white/10 rounded-4xl"
       >
         {isMenuOpen && (
           <div className="flex border-b-1 border-b-task-lightGray h-30 w-full justify-center items-center">

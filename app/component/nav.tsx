@@ -17,7 +17,7 @@ const nav = async ({ name }: ChildProps) => {
 
   return (
     <>
-      <nav className="z-20 backdrop-blur-md px-[5%] flex justify-between border-b-1 items-center w-full h-20 absolute top-0 border-b-gray-500">
+      <nav className="z-20 backdrop-blur-md px-[5%] flex justify-between border-b-1 items-center w-full h-20 absolute top-0 border-task-darkerWhite">
         {name === "profile" && referer && (
           <Link href={referer}>
             <div className="flex justify-center items-center cursor-pointer w-9 h-9 rounded-[50%] hover:bg-black/50">

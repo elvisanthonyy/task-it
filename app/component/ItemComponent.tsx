@@ -79,14 +79,14 @@ const ItemComponent = ({ item, index }: ChildProps) => {
   return (
     <div
       key={item._id}
-      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-[90%] h-14 pr-4  bg-task-lightGray/30 my-3 mb-4"
+      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-full h-14 pr-4  bg-task-lightGray/30 my-3 mb-4"
     >
       <div className="flex h-full items-center w-[60%]">
-        <div className="pl-4 text-[16px] text-green-400">{index + 1}.</div>
+        <div className="pl-4 text-[15px] text-green-400">{index + 1}.</div>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className={`h-[70%] text-[16px] rounded-md mx-1 pl-2 w-[90%] ${
+          className={`h-[70%] text-[15px] rounded-md mx-1 pl-2 w-[90%] ${
             inputState ? "outline-0" : "outline-1"
           } `}
           disabled={inputState}

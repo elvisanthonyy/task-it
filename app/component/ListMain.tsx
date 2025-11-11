@@ -102,7 +102,7 @@ const ListMain = ({ list }: ChildProps) => {
 
   return (
     <div className="overflow-hidden relative flex flex-col items-center w-full h-[80%]">
-      <div className="flex shrink-0 items-center border-b-1 text-md text-shadow-task-darkWhite justify-between z-5 px-[5%] h-20 mb-2 w-[100%]  border-white left-0">
+      <div className="flex shrink-0 items-center border-b-1 text-md text-shadow-task-darkWhite justify-between z-5 px-[5%] h-16 mb-2 w-[100%]  border-task-darkerWhite left-0">
         <div>{list?.title}</div>
         <div>{`Items: ${itemsLen}`}</div>
       </div>
