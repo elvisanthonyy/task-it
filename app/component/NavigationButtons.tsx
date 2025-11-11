@@ -7,15 +7,17 @@ import { useRouter } from "next/navigation";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 interface ChildProps {
   pageName?: string;
 }
 
 const NavigationButtons = ({ pageName }: ChildProps) => {
+  const { data: session } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div
       onClick={() => setIsMenuOpen(false)}
@@ -48,17 +50,23 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
               <GoArrowLeft className="text-lg text-task-darkWhite" />
             </div>
           )}
-          <div
-            className={`flex justify-center items-center  w-11 h-11 rounded-[50%] hover:bg-black/50`}
+          <Link
+            href={`/profile/${session?.user?.name?.replaceAll(" ", "-")}-${
+              session?.user?.id
+            }`}
           >
-            <FaUser
-              className={`hover:text-white ${
-                pageName === "profile"
-                  ? "text-white text-xl"
-                  : "text-task-darkWhite text-[15px]"
-              }`}
-            />
-          </div>
+            <div
+              className={`flex justify-center items-center  w-11 h-11 rounded-[50%] hover:bg-black/50`}
+            >
+              <FaUser
+                className={`hover:text-white ${
+                  pageName === "profile"
+                    ? "text-white text-xl"
+                    : "text-task-darkWhite text-[15px]"
+                }`}
+              />
+            </div>
+          </Link>
           <Link href="/">
             <div
               className={`flex justify-center items-center w-11 h-11 rounded-[50%] hover:bg-black/50`}
