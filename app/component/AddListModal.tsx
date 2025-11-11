@@ -44,22 +44,21 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex py-15 flex-col relative -mb-7 justify-between items-center w-full h-[70%] backdrop-blur-md rounded-2xl bg-white/15"
+        className="flex py-15 flex-col relative -mb-7 justify-between items-center w-full h-[60%] backdrop-blur-md rounded-2xl bg-white/15"
       >
         <div className="">Add List</div>
         <form className=" py-10 w-full h-full flex flex-col justify-start items-center">
           <div className="flex flex-col items-start w-[90%]">
-            <label>Title</label>
             <textarea
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter list title"
-              className="border-1 outline-0 text-sm px-2 py-2 mt-4 border-white rounded-md h-10 shrink-0 w-full"
+              className="bg-task-gray outline-0 text-md px-3 pt-4 text-shadow-task-darkerWhite mt-4 h-13 rounded-md shrink-0 w-full"
             />
           </div>
           <div
             onClick={addList}
-            className="cursor-pointer text-sm flex justify-center items-center mt-auto w-[90%] h-10 bg-white rounded-xl text-black"
+            className="cursor-pointer text-sm flex justify-center items-center mt-auto w-[90%] h-13 mb-5 bg-white rounded-xl text-black"
           >
             {loading ? <LoadingComponent /> : "Add"}
           </div>

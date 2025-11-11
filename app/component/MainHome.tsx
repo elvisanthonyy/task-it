@@ -124,13 +124,63 @@ const MainHome = () => {
   return (
     <main className="flex min-h-[90vh] flex-col items-center justify-start mt-25 w-full">
       <div
+        onClick={() => setIsDeleteModalOpen(false)}
+        className={`z-80 flex justify-center items-center top-0 left-0 ${
+          isDeleteModalOpen ? "fixed" : "hidden"
+        } w-full h-screen bg-black/50`}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="flex items-center justify-center w-[70%] h-[20%] rounded-xl bg-task-lightGray"
+        >
+          <button
+            onClick={deleteList}
+            className="bg-red-500 px-6 py-2 cursor-pointer text-sm rounded-md text-white  mx-3"
+          >
+            yes
+          </button>
+          <button
+            onClick={() => setIsDeleteModalOpen(false)}
+            className="bg-white px-6 py-2 rounded-md cursor-pointer text-sm text-black mx-3"
+          >
+            No
+          </button>
+        </div>
+      </div>
+      <div
+        onClick={() => setIsEditModalOpen(false)}
+        className={`z-90 flex justify-center items-center top-0 left-0 ${
+          isEditModalOpen ? "fixed" : "hidden"
+        } w-full h-screen bg-black/50`}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="z-96 w-[70%] p-3 h-[30%] rounded-xl bg-task-lightGray"
+        >
+          <form className="flex flex-col justify-center">
+            <textarea
+              value={listTitle}
+              onChange={(e) => setListTitle(e.target.value)}
+              className="flex py-3 justify-start border-0 bg-task-gray h-35 px-3 rounded-xl mb-5"
+            />
+            <button
+              type="button"
+              onClick={editListTitle}
+              className="text-black shrink-0 bg-white w-full mt-auto h-12 rounded-xl"
+            >
+              Done
+            </button>
+          </form>
+        </div>
+      </div>
+      <div
         className={`z-20 px-6 transition-all duration-500 ease-in-out ${
           selectedList._id.length > 0
             ? "opacity-100 scale-100 pointer-events-auto"
             : "opacity-0 scale-60 pointer-events-auto"
         }  ${
           selectedList._id.length > 0 ? "flex" : "hidden"
-        } justify-between items-center w-[90%] bg-task-lightGray/20 rounded-2xl h-8 border-1 border-task-lightGray mb-5`}
+        } justify-between items-center w-[90%] bg-task-lightGray/20 rounded-lg h-10 border-1 border-task-lightGray mb-5`}
       >
         <div
           className="cursor-pointer"
@@ -145,54 +195,7 @@ const MainHome = () => {
         >
           x{" "}
         </div>
-        <div
-          onClick={() => setIsDeleteModalOpen(false)}
-          className={`z-15 flex justify-center items-center top-0 left-0 ${
-            isDeleteModalOpen ? "fixed" : "hidden"
-          } w-full h-screen bg-black/50`}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="w-[50%] h-[20%] rounded-xl bg-white"
-          >
-            <button onClick={deleteList} className="text-black m-10">
-              yes
-            </button>
-            <button
-              onClick={() => setIsDeleteModalOpen(false)}
-              className="text-black m-10"
-            >
-              No
-            </button>
-          </div>
-        </div>
-        <div
-          onClick={() => setIsEditModalOpen(false)}
-          className={`z-15 flex justify-center items-center top-0 left-0 ${
-            isEditModalOpen ? "fixed" : "hidden"
-          } w-full h-screen bg-black/50`}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="w-[50%] h-[20%] rounded-xl bg-white"
-          >
-            <form>
-              <input
-                value={listTitle}
-                onChange={(e) => setListTitle(e.target.value)}
-                type="text"
-                className="border-2 border-black text-black"
-              />
-              <button
-                type="button"
-                onClick={editListTitle}
-                className="text-black m-10"
-              >
-                Done
-              </button>
-            </form>
-          </div>
-        </div>
+
         <FaTrashAlt
           onClick={() => setIsDeleteModalOpen(true)}
           className="cursor-pointer"
