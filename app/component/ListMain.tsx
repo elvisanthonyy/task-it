@@ -152,7 +152,7 @@ const ListMain = ({ list }: ChildProps) => {
               </div>
             </form>
             <div
-              className="fixed text left-[6%] bottom-25 my-3 bg-white cursor-pointer text-black h-15 w-15 flex justify-center items-center rounded-[50%]"
+              className="fixed text-3xl left-[6%] bottom-25 my-3 bg-white cursor-pointer text-black h-15 w-15 flex justify-center items-center rounded-[50%]"
               onClick={openCloseAddItem}
             >
               {!isAdditemOpen ? "+" : <MdClose />}
