@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 
 const page = () => {
   return (
-    <div className="flex w-full h-screen justify-center items-center">
+    <div className="flex w-full h-[100dvh] justify-center items-center">
       <div className="flex flex-col md:border-1 nx:border-1 justify-center w-full h-[60dvh] items-center nx:bg-task-selectColor/70 nx:rounded-3xl nx:w-130 nx:aspect-square nx:h-[70dvh]  ">
         <div className="shrink-0 z-20 mt-0 nx:mt-5 aspect-square  w-[70%] nx:w-[40%] rounded-full mx-auto wave- text-white flex justify-center items-center bg-gradient-to-br from-green-400 to-green-600">
           <GoChecklist className=" mx-2 text-4xl" />

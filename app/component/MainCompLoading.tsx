@@ -9,6 +9,8 @@ const MainCompLoading = () => {
       <div className="aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video opacity-50 w-full   mx-auto bg-task-gray rounded-2xl"></div>
       <div className="aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video opacity-50 w-full   mx-auto bg-task-gray rounded-2xl"></div>
       <div className="aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video opacity-50 w-full   mx-auto bg-task-gray rounded-2xl"></div>
+      <div className="aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video opacity-50 w-full   mx-auto bg-task-gray rounded-2xl"></div>
+      <div className="aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video opacity-50 w-full   mx-auto bg-task-gray rounded-2xl"></div>
     </div>
   );
 };

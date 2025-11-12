@@ -24,14 +24,14 @@ const page = async () => {
   const data = await res.json();
 
   return (
-    <div>
+    <div className="relative pt-25 top-0 left-0 h-[100dvh] ">
       <Nav name="profile" />
-      <div className="flex md:flex-row md:justify-between  mt-5 pt-30 flex-col w-full px-[6%]">
-        <div className="flex mx-auto border-3 border-t-blue-600 border-b-blue-600 justify-center items-center w-[50%] md:w-[45%] aspect-square bg-purple-500 rounded-full">
+      <div className="flex justify-start md:flex-row md:justify-start md:items-center md:px-[6%] h-[70dvh] flex-col w-full px-[6%]">
+        <div className="flex mx-auto md:mx-0 border-3 md:mr-30 border-t-blue-600 border-b-blue-600 justify-center items-center w-[50%] md:w-[35%] aspect-square bg-purple-500 rounded-full">
           <FaUser className="text-6xl text-task-darkWhite" />
         </div>
-        <div className="flex md:justify-center md:w-[40%] md:flex-col">
-          <div className="relative flex h-15 w-full mt-15 items-start">
+        <div className="h-90 md:h-fit md:py-7 border-b-1 pb-5  md:justify-center justify-start flex  md:w-[40%] flex-col">
+          <div className="relative flex h-15 w-full md:mt-0 mt-15 items-start">
             <div className="flex h-full items-start mt-2 mr-4">
               <FaUser className=" text-lg text-task-lightGray" />
             </div>

@@ -139,7 +139,7 @@ const MainHome = () => {
   }, [session?.user?.email, status, session?.user?.id]);
 
   return (
-    <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-25 w-full">
+    <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-20 w-full">
       <Alert
         isAlertVisble={alertComp.state}
         alertType={alertComp.type}
@@ -149,7 +149,7 @@ const MainHome = () => {
         onClick={() => setIsDeleteModalOpen(false)}
         className={`z-80 flex justify-center items-center top-0 left-0 ${
           isDeleteModalOpen ? "fixed" : "hidden"
-        } w-full h-screen bg-black/50`}
+        } w-full h-[100dvh] bg-black/50`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
@@ -173,7 +173,7 @@ const MainHome = () => {
         onClick={() => setIsEditModalOpen(false)}
         className={`z-90 flex justify-center items-center top-0 left-0 ${
           isEditModalOpen ? "fixed" : "hidden"
-        } w-full h-screen bg-black/90`}
+        } w-full h-[100dvh] bg-black/90`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
@@ -195,7 +195,7 @@ const MainHome = () => {
           </form>
         </div>
       </div>
-      <div className="flex items-center w-full px-[5%] md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-center">
+      <div className="flex items-center w-full px-[5%] md:pt-30 md:absolute top-0 min-h-[90vh] pt-2 h-auto left-0 flex-col md:w-[75%] justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
             selectedList._id.length > 0
