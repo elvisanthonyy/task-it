@@ -79,7 +79,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
           </div>
           <div
             onClick={addList}
-            className="cursor-pointer mb-6 text-sm flex shrink-0 justify-center mt-auto items-center md:mb-10  w-[90%] h-13 bg-white rounded-xl text-black"
+            className="cursor-pointer mb-8 text-sm flex shrink-0 justify-center mt-auto items-center md:mb-10  w-[90%] h-13 bg-white rounded-xl text-black"
           >
             {loading ? <LoadingComponent /> : "Add"}
           </div>
