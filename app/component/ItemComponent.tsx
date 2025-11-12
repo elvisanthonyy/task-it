@@ -10,9 +10,19 @@ interface ChildProps {
   item: Item;
   index: number;
   listId?: string;
+  getItems?: () => void;
+  itemsLen: number;
+  setItemsLen?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ItemComponent = ({ item, index, listId }: ChildProps) => {
+const ItemComponent = ({
+  item,
+  index,
+  listId,
+  getItems,
+  setItemsLen,
+  itemsLen,
+}: ChildProps) => {
   const [inputState, setInputState] = useState<boolean>(true);
   const [name, setName] = useState<string>(item.name);
   let varStatus;
@@ -22,6 +32,7 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
     type: "",
     message: "",
   });
+
   const setDoneApi = () => {
     if (status === "not done") {
       varStatus = "done";
@@ -46,6 +57,8 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
       })
       .then((response) => {
         if (response.data.status === "okay") {
+          setItemsLen?.(itemsLen - 1);
+          getItems?.();
           openAlert(response.data.status, response.data.message);
         } else {
           openAlert(response.data.status, response.data.message);
@@ -72,6 +85,7 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
         if (response.data.message === "Item updated") {
           setInputState(true);
           openAlert(response.data.status, response.data.message);
+          getItems?.();
         } else {
           openAlert(response.data.status, response.data.message);
         }
@@ -95,7 +109,7 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
   return (
     <div
       key={item._id}
-      className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-full h-14 pr-4  bg-task-lightGray/30 my-3 mb-4"
+      className="flex rounded-2xl my-3 nx:my-0 text-[12px] items-center justify-between w-full nx:w-full h-14 pr-4  bg-task-lightGray/30"
     >
       <Alert
         isAlertVisble={alertComp.state}

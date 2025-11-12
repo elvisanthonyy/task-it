@@ -56,7 +56,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
   return (
     <div
       onClick={() => setIsListModalOpen(false)}
-      className="z-80 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-screen bg-black/60"
+      className="z-80 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-screen bg-black/80"
     >
       <Alert
         isAlertVisble={alertComp.state}
@@ -65,21 +65,21 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
       />
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex py-15 flex-col relative -mb-7 justify-between items-center w-full h-[60%] backdrop-blur-md rounded-2xl bg-white/15"
+        className="flex flex-col relative py-5 justify-between nx:absolute nx:w-100 nx:h-90 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-[60%] backdrop-blur-md rounded-2xl bg-white/15"
       >
-        <div className="">Add List</div>
-        <form className=" py-10 w-full h-full flex flex-col justify-start items-center">
-          <div className="flex flex-col items-start w-[90%]">
+        <div className="mt-5 md:mb-0">Add List</div>
+        <form className="w-full min-h-[90%] h-auto flex flex-col justify-start items-center">
+          <div className="flex flex-col  h-[60%] md:h-[90%] items-start w-[90%]">
             <textarea
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter list title"
-              className="bg-task-gray outline-0 text-md px-3 pt-4 text-shadow-task-darkerWhite mt-4 h-13 rounded-md shrink-0 w-full"
+              className="bg-task-gray outline-0 nx:h-[80%] text-md px-3 pt-4 text-shadow-task-darkerWhite mt-4 h-30 md:h-[80%] rounded-md shrink-0 w-full"
             />
           </div>
           <div
             onClick={addList}
-            className="cursor-pointer text-sm flex justify-center items-center mt-auto w-[90%] h-13 mb-5 bg-white rounded-xl text-black"
+            className="cursor-pointer text-sm flex shrink-0 justify-center mt-auto items-center md:mb-10  w-[90%] h-13 bg-white rounded-xl text-black"
           >
             {loading ? <LoadingComponent /> : "Add"}
           </div>

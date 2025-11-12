@@ -29,7 +29,7 @@ const page = async ({ params }: { params: { listId: string } }) => {
 
   return (
     <>
-      <div className="flex justify-center w-full h-screen ">
+      <div className="flex justify-center md:justify-start w-full h-screen ">
         <ListMain list={data.list} />
         <NavigationButtons />
       </div>

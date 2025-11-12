@@ -16,40 +16,8 @@ interface List {
   createdAt: Date;
 }
 const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
-  const [alertComp, setAlertComp] = useState({
-    state: false,
-    type: "",
-    message: "",
-  });
-  /*const [isMenuOpen, setIsMenuOpen] = useState(false);
-  <div
-        className={`flex-col  justify-between items-center p-5 absolute -right-10 -bottom-10 w-30 h-30 bg-black ${
-          isMenuOpen ? "flex" : "hidden"
-        }`}
-      >
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            deleteList();
-          }}
-          className="cursor-pointer px-3 text-red-600 "
-        >
-          delete list
-        </button>
-        <button onClick={(e) => e.stopPropagation()}>Edit title</button>
-      </div>*/
   const date = new Date(list.createdAt);
 
-  /*const deleteList = () => {
-    axios
-      .post("/api/list/delete", {
-        id: list._id,
-      })
-      .then()
-      .catch((error) => {
-        console.log(error);
-      });
-  };*/
   return (
     <div>
       <div
@@ -74,7 +42,7 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
           className={`flex shrink-0 justify-center mt-1 items-center h-5 mx-1 w-5 rounded-[50%] ${
             selectedList._id === list._id
               ? "bg-green-600 "
-              : "bg-task-lightGray "
+              : "bg-task-selectColor"
           }`}
         >
           {selectedList._id === list._id && <HiCheck />}
