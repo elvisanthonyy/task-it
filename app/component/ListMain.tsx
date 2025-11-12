@@ -5,6 +5,7 @@ import api from "../utils/api";
 import { MdClose } from "react-icons/md";
 import ItemsCompLoading from "./ItemsCompLoading";
 import LoadingComponent from "./LoadingComponent";
+import Alert from "./Alert";
 
 interface ChildProps {
   list: List;
@@ -32,6 +33,11 @@ const ListMain = ({ list }: ChildProps) => {
   const [items, setItems] = useState<Item[]>([]);
   const [itemsLen, setItemsLen] = useState(list?.items?.length);
   const [nameMessage, setNameMessage] = useState("");
+  const [alertComp, setAlertComp] = useState({
+    state: false,
+    type: "",
+    message: "",
+  });
   const [loading, setLoading] = useState({
     main: true,
     addItem: false,
@@ -52,7 +58,10 @@ const ListMain = ({ list }: ChildProps) => {
             fetchItems();
             setItemsLen(itemsLen + 1);
             setIsAddItemOpen(false);
+            openAlert(response.data.status, response.data.message);
             setName("");
+          } else {
+            openAlert(response.data.status, "Something went wrong");
           }
 
           //fetchItems();
@@ -65,6 +74,15 @@ const ListMain = ({ list }: ChildProps) => {
       setNameMessage("Item name can not be blank");
       setLoading((prev) => ({ ...prev, addItem: false }));
     }
+  };
+
+  const openAlert = (type: string, message: string) => {
+    setAlertComp((prev) => ({ ...prev, type: type }));
+    setAlertComp((prev) => ({ ...prev, message: message }));
+    setAlertComp((prev) => ({ ...prev, state: true }));
+    setTimeout(() => {
+      setAlertComp((prev) => ({ ...prev, state: false }));
+    }, 4000);
   };
 
   const openCloseAddItem = () => {
@@ -102,6 +120,12 @@ const ListMain = ({ list }: ChildProps) => {
 
   return (
     <div className="overflow-hidden relative flex flex-col items-center w-full h-[80%]">
+      <Alert
+        isAlertVisble={alertComp.state}
+        alertType={alertComp.type}
+        message={alertComp.message}
+      />
+
       <div className="flex shrink-0 items-center border-b-1 text-md text-shadow-task-darkWhite justify-between z-5 px-[5%] h-16 mb-2 w-[100%]  border-task-darkerWhite left-0">
         <div>{list?.title}</div>
         <div>{`Items: ${itemsLen}`}</div>

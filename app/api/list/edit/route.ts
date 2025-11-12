@@ -2,14 +2,17 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/libs/dbConnection";
 import { List } from "@/app/models/list";
 import { ListBody } from "../addlist/route";
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 const handler = async (req: Request) => {
   dbConnect();
-  const authHeader = req.headers.get("authorization");
-  console.log(authHeader);
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const session = getServerSession(authOptions);
+
+  if (!session) {
     return NextResponse.json(
-      { message: "missing or invalid token" },
+      { status: "error", message: "session not found" },
       { status: 401 }
     );
   }
@@ -20,11 +23,14 @@ const handler = async (req: Request) => {
 
     const list = await List.findById(body?.id);
     if (!list)
-      return NextResponse.json({ message: "List not found" }, { status: 404 });
+      return NextResponse.json(
+        { status: "error", message: "List not found" },
+        { status: 404 }
+      );
     list.title = body?.title;
     await list.save();
     return NextResponse.json(
-      { message: "List title updated" },
+      { status: "okay", message: "List title updated" },
       { status: 200 }
     );
   } catch (error) {

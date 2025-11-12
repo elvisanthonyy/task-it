@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import AddListModal from "./AddListModal";
 import { useSession } from "next-auth/react";
 import ListComponent from "./ListComponent";
@@ -10,6 +9,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import api from "@/app/utils/api";
 import { redirect } from "next/navigation";
 import MainCompLoading from "./MainCompLoading";
+import Alert from "./Alert";
 
 interface List {
   _id: string;
@@ -33,6 +33,11 @@ const MainHome = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
+  const [alertComp, setAlertComp] = useState({
+    state: false,
+    type: "",
+    message: "",
+  });
   /*const [loading, setLoading] = useState({
     getList: false,
     deleteList: false,
@@ -52,7 +57,7 @@ const MainHome = () => {
       })
       .then((response) => {
         if (response.data.status === "okay") {
-          toast.success(response.data.message);
+          openAlert(response.data.status, response.data.message);
           setIsDeleteModalOpen(false);
           setSelectedList({
             _id: "",
@@ -61,7 +66,7 @@ const MainHome = () => {
             createdAt: new Date(),
           });
         } else {
-          toast.error(response.data.message);
+          openAlert(response.data.status, "could not delete list");
         }
       })
       .catch((error) => {
@@ -80,8 +85,14 @@ const MainHome = () => {
     api
       .put("/api/list/edit", editListData)
       .then((response) => {
+        setSelectedList({
+          _id: "",
+          title: "",
+          items: [],
+          createdAt: new Date(),
+        });
         if (response.data.message === "List title updated") {
-          alert(response.data.message);
+          openAlert(response.data.status, response.data.message);
           setIsEditModalOpen(false);
         }
       })
@@ -109,6 +120,14 @@ const MainHome = () => {
       });
   };
 
+  const openAlert = (type: string, message: string) => {
+    setAlertComp((prev) => ({ ...prev, type: type }));
+    setAlertComp((prev) => ({ ...prev, message: message }));
+    setAlertComp((prev) => ({ ...prev, state: true }));
+    setTimeout(() => {
+      setAlertComp((prev) => ({ ...prev, state: false }));
+    }, 4000);
+  };
   const listLink = (listPar: List) => {
     //setCurrentList(list);
     setTimeout(() => {
@@ -123,6 +142,11 @@ const MainHome = () => {
 
   return (
     <main className="flex min-h-[90vh] flex-col items-center justify-start mt-25 w-full">
+      <Alert
+        isAlertVisble={alertComp.state}
+        alertType={alertComp.type}
+        message={alertComp.message}
+      />
       <div
         onClick={() => setIsDeleteModalOpen(false)}
         className={`z-80 flex justify-center items-center top-0 left-0 ${

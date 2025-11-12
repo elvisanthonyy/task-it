@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
 import api from "../utils/api";
-import { toast } from "react-toastify";
+import Alert from "./Alert";
 
 interface ChildProps {
   item: Item;
@@ -17,7 +17,11 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
   const [name, setName] = useState<string>(item.name);
   let varStatus;
   const [status, setStatus] = useState("not done");
-
+  const [alertComp, setAlertComp] = useState({
+    state: false,
+    type: "",
+    message: "",
+  });
   const setDoneApi = () => {
     if (status === "not done") {
       varStatus = "done";
@@ -41,16 +45,17 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
         listId: listId,
       })
       .then((response) => {
-        if (response.data.message === "item deleted") {
-          toast.success(response.data.message);
+        if (response.data.status === "okay") {
+          openAlert(response.data.status, response.data.message);
         } else {
-          toast.error(response.data.message);
+          openAlert(response.data.status, response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   /*const enableInput = () => {
     alert("hello");
     const nameInput = document.getElementsByClassName("name-input");
@@ -66,14 +71,23 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
       .then((response) => {
         if (response.data.message === "Item updated") {
           setInputState(true);
-          toast.success(response.data.message);
+          openAlert(response.data.status, response.data.message);
         } else {
-          toast.error(response.data.message);
+          openAlert(response.data.status, response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const openAlert = (type: string, message: string) => {
+    setAlertComp((prev) => ({ ...prev, type: type }));
+    setAlertComp((prev) => ({ ...prev, message: message }));
+    setAlertComp((prev) => ({ ...prev, state: true }));
+    setTimeout(() => {
+      setAlertComp((prev) => ({ ...prev, state: false }));
+    }, 4000);
   };
   useEffect(() => {
     setStatus(item.status);
@@ -83,6 +97,11 @@ const ItemComponent = ({ item, index, listId }: ChildProps) => {
       key={item._id}
       className="flex shrink-0 rounded-2xl text-[12px] nx:mx-auto items-center justify-between w-full nx:w-full h-14 pr-4  bg-task-lightGray/30 my-3 mb-4"
     >
+      <Alert
+        isAlertVisble={alertComp.state}
+        alertType={alertComp.type}
+        message={alertComp.message}
+      />
       <div className="flex h-full items-center w-[60%]">
         <div className="pl-4 text-[15px] text-green-400">{index + 1}.</div>
         <input

@@ -21,11 +21,18 @@ const handler = async (req: Request) => {
 
   try {
     const body = (await req.json()) as ItemBody;
-    await Item.findByIdAndDelete(body?.id);
+    const item = await Item.findById(body?.id);
+    if (!item) {
+      return NextResponse.json({
+        status: "error",
+        message: "Item doesn't exits",
+      });
+    }
+    await item.deleteOne();
     const list = await List.findById(body?.listId);
     console.log(list);
     await List.updateOne({ _id: body?.listId }, { $pull: { items: body?.id } });
-    return NextResponse.json({ message: "item deleted" });
+    return NextResponse.json({ status: "okay", message: "item deleted" });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "somthing went wrong" });

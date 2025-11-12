@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-import { useListListContext } from "../context/ListContext";
-import { redirect } from "next/navigation";
+import React, { useState } from "react";
+
 import { HiCheck } from "react-icons/hi";
 
 interface ChildProps {
@@ -17,7 +16,11 @@ interface List {
   createdAt: Date;
 }
 const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
-  const { setCurrentList } = useListListContext();
+  const [alertComp, setAlertComp] = useState({
+    state: false,
+    type: "",
+    message: "",
+  });
   /*const [isMenuOpen, setIsMenuOpen] = useState(false);
   <div
         className={`flex-col  justify-between items-center p-5 absolute -right-10 -bottom-10 w-30 h-30 bg-black ${
