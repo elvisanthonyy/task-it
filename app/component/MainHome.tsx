@@ -195,7 +195,7 @@ const MainHome = () => {
           </form>
         </div>
       </div>
-      <div className="flex items-center w-full px-[5%] md:pt-30 md:absolute top-0 min-h-[90vh] pt-2 h-auto left-0 flex-col md:w-[75%] justify-start">
+      <div className="flex items-center w-full px-[3%] md:px-[5%] pt-5 md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
             selectedList._id.length > 0

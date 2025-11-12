@@ -18,7 +18,7 @@ const nav = async ({ name }: ChildProps) => {
   return (
     <>
       <nav
-        className={`z-20 backdrop-blur-md px-[5%] md:border-b-1 flex justify-between ${
+        className={`z-20 backdrop-blur-md px-[6%] border-b-1 md:border-b-1 flex justify-between ${
           name !== "profile" && "md:w-[75%]"
         }  items-center w-full h-20 md:h-22 absolute top-0 border-task-darkerWhite`}
       >
@@ -41,22 +41,22 @@ const nav = async ({ name }: ChildProps) => {
               name === "profile" && "hidden"
             } cursor-pointer items-center justify-start `}
           >
-            <div className="flex shrink-0 justify-center items-center w-9 h-9 rounded-full bg-purple-500 mr-4">
+            <div className="flex shrink-0 justify-center items-center w-8 h-8 rounded-full bg-purple-500 mr-4">
               <FaUser className="text-md" />
             </div>
 
-            <div className="text-lg font-semibold mr-2 text-shadow-task-darkWhite">
+            <div className="text-md font-semibold mr-2 text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[0]}
             </div>
-            <div className="text-lg text-shadow-task-darkWhite">
+            <div className="text-md text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[1]}
             </div>
           </div>
         </Link>
         <Link href={"/"} className="flex w-[40%] justify-start">
           <div className="flex shrink-0 items-center justify-end w-full">
-            <GoChecklist className="text-3xl mr-3" />
-            <div className="text-lg cursor-pointer">Task It</div>
+            <GoChecklist className="text-2xl mr-3" />
+            <div className="text-md cursor-pointer">Task It</div>
           </div>
         </Link>
       </nav>

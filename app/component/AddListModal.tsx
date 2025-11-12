@@ -65,7 +65,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
       />
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col relative py-5 justify-between rounded-tl-2xl rounded-tr-2xl nx:absolute nx:w-100 nx:h-90 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-[60%] backdrop-blur-md nx:rounded-2xl bg-white/15"
+        className="flex flex-col relative py-5 justify-between rounded-tl-2xl rounded-tr-2xl nx:absolute nx:w-100 nx:h-90 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-[41%] backdrop-blur-md nx:rounded-2xl bg-white/15"
       >
         <div className="mt-5 md:mb-0">Add List</div>
         <form className="w-full min-h-[90%] h-auto flex flex-col justify-start items-center">
@@ -79,7 +79,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
           </div>
           <div
             onClick={addList}
-            className="cursor-pointer mb-10 text-sm flex shrink-0 justify-center mt-auto items-center md:mb-10  w-[90%] h-13 bg-white rounded-xl text-black"
+            className="cursor-pointer mb-6 text-sm flex shrink-0 justify-center mt-auto items-center md:mb-10  w-[90%] h-13 bg-white rounded-xl text-black"
           >
             {loading ? <LoadingComponent /> : "Add"}
           </div>
