@@ -1,8 +1,8 @@
-# <ins>TASK-IT</ins>
+## TASK-IT
 
 TASK-IT is a web application that allows you to signg in using google and create to-do list with specific Items and tick them when your done.
 
-## <ins>🚀FEATURES</ins>
+### 🚀FEATURES
 
 - **Google sign in**: Users can sign in with Google to avoid the long creating account process.
 - **Creating To-do list**: Create to-do list to help keep track of your activities.
@@ -10,7 +10,7 @@ TASK-IT is a web application that allows you to signg in using google and create
 - **React UI:**: Built using React and tailwind, provides a smooth and sleek design
 - **Fast Next.js backend**: Built using Next.js provides a fast and very efficient backend
 
-## <ins>🛠 BUILT WITH</ins>
+### 🛠 BUILT WITH
 
 - Next.js
 - MongoDB
@@ -19,17 +19,17 @@ TASK-IT is a web application that allows you to signg in using google and create
 - Next-Auth
 - Google OAuth
 
-## <ins>👨‍🦱 DEVELOPER</ins>
+### 👨‍🦱 DEVELOPER
 
 **Elvis Anthony**
 Full-Stack (MERN) and Next.js Developer, Abuja.
 Info.elvisanthony@gmail.com
 
-## <ins>📞 CONTACT</ins>
+### 📞 CONTACT
 
 - **Email**: info.elitehubglobal@gmail.com
 - **Phone**: + 234 904 534 2672
 
-## <ins>📄 LICENSE </ins>
+### 📄 LICENSE
 
-License &copy; 2025 Task-It
+License 2025 Task-It
