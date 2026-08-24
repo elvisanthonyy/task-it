@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ItemComponent from "./ItemComponent";
 import api from "../utils/api";
 import { MdClose } from "react-icons/md";
@@ -97,7 +97,7 @@ const ListMain = ({ list }: ChildProps) => {
     setNameMessage("");
   };
 
-  const fetchItems = () => {
+  const fetchItems = useCallback(async () => {
     api
       .post<ResponseItem>("/api/list/getitems", { listId: list._id })
       .then((response) => {
@@ -110,7 +110,7 @@ const ListMain = ({ list }: ChildProps) => {
         setLoading((prev) => ({ ...prev, main: false }));
         console.log(error);
       });
-  };
+  }, []);
 
   useEffect(() => {
     fetchItems();

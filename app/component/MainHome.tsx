@@ -108,7 +108,7 @@ const MainHome = () => {
     setListTitle(selectedList.title);
   };
 
-  const getLists = () => {
+  const getLists = useCallback(async () => {
     localStorage.setItem("userId", session?.user?.id ?? "");
     api
       .get<ListRes>("/api/user/getlists")
@@ -120,7 +120,7 @@ const MainHome = () => {
         setLoading(false);
         console.log(error);
       });
-  };
+  }, []);
 
   const openAlert = (type: string, message: string) => {
     setAlertComp((prev) => ({ ...prev, type: type }));

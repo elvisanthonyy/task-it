@@ -1,5 +1,6 @@
 "use client";
 
+import React, { ChangeEvent } from "react";
 import { HiCheck } from "react-icons/hi";
 
 interface ChildProps {
@@ -16,6 +17,17 @@ interface List {
 }
 const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
   const date = new Date(list.createdAt);
+  const selectList = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    selectedList._id === list._id
+      ? setSelectedList({
+          _id: "",
+          title: "",
+          items: [],
+          createdAt: new Date(),
+        })
+      : setSelectedList(list);
+  };
 
   return (
     <div className="w-full">
@@ -32,16 +44,8 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
           {date.toLocaleDateString()}
         </div>
         <div
-          onClick={(e) => {
-            e.stopPropagation();
-            selectedList._id === list._id
-              ? setSelectedList({
-                  _id: "",
-                  title: "",
-                  items: [],
-                  createdAt: new Date(),
-                })
-              : setSelectedList(list);
+          onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+            selectList(e);
           }}
           className={`flex shrink-0 justify-center mt-1 items-center h-7 mx-1 aspect-square rounded-[50%] ${
             selectedList._id === list._id ? "bg-green-600 " : "bg-background"
