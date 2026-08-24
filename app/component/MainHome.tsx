@@ -4,13 +4,10 @@ import { useState, useEffect } from "react";
 import AddListModal from "./AddListModal";
 import { useSession } from "next-auth/react";
 import ListComponent from "./ListComponent";
-import Link from "next/link";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import api from "@/app/utils/api";
 import { useRouter } from "next/navigation";
 import MainCompLoading from "./MainCompLoading";
 import Alert from "./Alert";
-import Nav from "./nav";
 import Image from "next/image";
 
 interface List {
@@ -138,7 +135,7 @@ const MainHome = () => {
     if (status === "authenticated") {
       getLists();
     }
-  }, [session?.user?.email, status, session?.user?.id]);
+  }, [session?.user?.email, status, session?.user?.id, getLists]);
 
   return (
     <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-[64px] w-full">

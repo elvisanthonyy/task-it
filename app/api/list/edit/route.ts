@@ -3,7 +3,6 @@ import dbConnect from "@/libs/dbConnection";
 import { List } from "@/app/models/list";
 import { ListBody } from "../addlist/route";
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
 const handler = async (req: Request) => {
@@ -13,7 +12,7 @@ const handler = async (req: Request) => {
   if (!session) {
     return NextResponse.json(
       { status: "error", message: "session not found" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -25,13 +24,13 @@ const handler = async (req: Request) => {
     if (!list)
       return NextResponse.json(
         { status: "error", message: "List not found" },
-        { status: 404 }
+        { status: 404 },
       );
     list.title = body?.title;
     await list.save();
     return NextResponse.json(
       { status: "okay", message: "List title updated" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);

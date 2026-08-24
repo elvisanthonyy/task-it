@@ -51,6 +51,7 @@ const handler = async (req: Request) => {
     return NextResponse.json({
       status: "error",
       message: "somthing went wrong",
+      error,
     });
   }
 };

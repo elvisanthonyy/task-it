@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 
 import { HiCheck } from "react-icons/hi";
 

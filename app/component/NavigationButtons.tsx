@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { GoArrowLeft, GoHomeFill } from "react-icons/go";
-import { FaUser } from "react-icons/fa";
+import { GoArrowLeft } from "react-icons/go";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { signOut, useSession } from "next-auth/react";

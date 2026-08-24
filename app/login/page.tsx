@@ -1,7 +1,5 @@
 "use client";
-import { useMemo } from "react";
-import { GoChecklist } from "react-icons/go";
-import { FaGoogle } from "react-icons/fa";
+
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
