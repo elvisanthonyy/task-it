@@ -18,12 +18,18 @@
   --color-task-darkWhite: #e4e4e4;
   --color-task-darkerWhite: #afafaf;
   --color-task-selectColor: #2e2e2e;
+  --color-background: #1a1a1a;
+  --color-accent: #333333;
+  --color-text-gray: #d9d9d9;
+  --color-deeper-text: #a3a3a3;
+  --color-icon-gray: #eaeaea;
+  --color-dark-black: #0f0f0f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f0f0f;
+    --foreground: #d9d9d9;
   }
 }
 

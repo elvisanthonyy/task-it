@@ -19,17 +19,22 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
   const date = new Date(list.createdAt);
 
   return (
-    <div>
+    <div className="w-full">
       <div
         onClick={(e) => e.stopPropagation()}
         className="flex items-start justify-between w-full px-3 absolute top-5 left-[50%] -translate-x-[50%]"
       >
-        <div className="flextext-sm text-gray-300 px-1 w-25 h-8 overflow-y-hidden overflow-x-hidden">
+        <div className="flex text-[14px] text-text-gray px-1 w-25 h-8 overflow-y-hidden overflow-x-hidden">
           {list.title}
         </div>
-
+      </div>
+      <div className="flex items-center  w-full justify-between">
+        <div className=" p-1 px-3 text-[12px] text-deeper-text">
+          {date.toLocaleDateString()}
+        </div>
         <div
-          onClick={() =>
+          onClick={(e) => {
+            e.stopPropagation();
             selectedList._id === list._id
               ? setSelectedList({
                   _id: "",
@@ -37,23 +42,17 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
                   items: [],
                   createdAt: new Date(),
                 })
-              : setSelectedList(list)
-          }
-          className={`flex shrink-0 justify-center mt-1 items-center h-5 mx-1 w-5 rounded-[50%] ${
-            selectedList._id === list._id
-              ? "bg-green-600 "
-              : "bg-task-selectColor"
+              : setSelectedList(list);
+          }}
+          className={`flex shrink-0 justify-center mt-1 items-center h-7 mx-1 aspect-square rounded-[50%] ${
+            selectedList._id === list._id ? "bg-green-600 " : "bg-background"
           }`}
         >
           {selectedList._id === list._id && <HiCheck />}
         </div>
-      </div>
-
-      <div className=" p-1 px-3 text-[12px] text-gray-300">
-        {date.toLocaleDateString()}
-      </div>
-      <div className="pl-3 text-[11px] text-gray-400">
-        Items: {list.items.length}
+        <div className="pl-3 hidden text-[11px] text-gray-400">
+          Items: {list.items.length}
+        </div>
       </div>
     </div>
   );

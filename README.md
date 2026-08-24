@@ -32,4 +32,4 @@ Info.elvisanthony@gmail.com
 
 ### 📄 LICENSE
 
-License 2025 Task-It
+License &copy; 2025 Task-It

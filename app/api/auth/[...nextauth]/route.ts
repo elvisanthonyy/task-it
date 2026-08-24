@@ -18,9 +18,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn:
+      "http://https://precognizant-priscila-subterraneously.ngrok-free.dev/login",
   },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("exp://10.34.122.19:8081")) return url;
+      return baseUrl;
+    },
     async signIn({ profile }) {
       await dbConnect();
       if (!profile?.email) {

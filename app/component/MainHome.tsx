@@ -10,6 +10,8 @@ import api from "@/app/utils/api";
 import { useRouter } from "next/navigation";
 import MainCompLoading from "./MainCompLoading";
 import Alert from "./Alert";
+import Nav from "./nav";
+import Image from "next/image";
 
 interface List {
   _id: string;
@@ -139,7 +141,7 @@ const MainHome = () => {
   }, [session?.user?.email, status, session?.user?.id]);
 
   return (
-    <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-20 w-full">
+    <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-[64px] w-full">
       <Alert
         isAlertVisble={alertComp.state}
         alertType={alertComp.type}
@@ -195,7 +197,7 @@ const MainHome = () => {
           </form>
         </div>
       </div>
-      <div className="flex items-center w-full px-[3%] md:px-[5%] pt-5 md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-start">
+      <div className="flex items-center w-full px-4 md:px-[5%] pt-5 md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
             selectedList._id.length > 0
@@ -203,7 +205,7 @@ const MainHome = () => {
               : "opacity-0 scale-60 pointer-events-auto"
           }  ${
             selectedList._id.length > 0 ? "flex" : "hidden"
-          } justify-between items-center  md:w-full md:mx-0 w-full md:mt-5 bg-task-lightGray/20 rounded-lg h-10 border-1 border-task-lightGray mb-5`}
+          } justify-between items-center fixed top-0 md:w-full md:mx-0 w-full md:mt-5 bg-background h-[64px]`}
         >
           <div
             className="cursor-pointer"
@@ -216,14 +218,43 @@ const MainHome = () => {
               })
             }
           >
-            x{" "}
+            <div className="w-[24px] aspect-square">
+              <Image
+                src={"/icons/back-icon.svg"}
+                alt="profile"
+                height={50}
+                width={50}
+                className="h-full"
+                draggable={false}
+              />
+            </div>
           </div>
 
-          <FaTrashAlt
-            onClick={() => setIsDeleteModalOpen(true)}
-            className="cursor-pointer"
-          />
-          <FaEdit onClick={openEditmodal} className="cursor-pointer" />
+          <div
+            onClick={() => openEditmodal()}
+            className="flex pointer-cursor gap-8"
+          >
+            <div className="w-[20px] aspect-square">
+              <Image
+                src={"/icons/edit-icon.svg"}
+                alt="profile"
+                height={50}
+                width={50}
+                className="h-full"
+                draggable={false}
+              />
+            </div>
+            <div onClick={() => openModal} className="w-[20px] aspect-square">
+              <Image
+                src={"/icons/delete.svg"}
+                alt="profile"
+                height={50}
+                width={50}
+                className="h-full"
+                draggable={false}
+              />
+            </div>
+          </div>
         </div>
         {loading ? (
           <MainCompLoading />
@@ -250,10 +281,10 @@ const MainHome = () => {
                       key={list._id}
                       onClick={() =>
                         router.push(
-                          `/list/${list._id}-${list.title.replaceAll(" ", "-")}`
+                          `/list/${list._id}-${list.title.replaceAll(" ", "-")}`,
                         )
                       }
-                      className="relative aspect-square sm:aspect-[5/4] md:aspect-square lg:aspect-[5/4] xl:aspect-video shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-2xl w-full bg-task-gray hover:opacity-75"
+                      className="relative aspect-square sm:aspect-[5/4] md:aspect-square bg-accent lg:aspect-[5/4] xl:aspect-video shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-[8px] w-full bg-taskhover:opacity-75"
                     >
                       <ListComponent
                         list={list}
@@ -270,9 +301,9 @@ const MainHome = () => {
       </div>
       <div
         onClick={openModal}
-        className={`cursor-pointer md:w-40 md:rounded-2xl text-2xl fixed right-[7%] md:right-auto md:left-[5%] shadow-3xl md text-black bottom-0 transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
+        className={`cursor-pointer md:w-40 md:rounded-2xl text-2xl fixed left-[50%] -translate-x-[50%] md:right-auto md:left-[5%] shadow-3xl md text-black bottom-[100px] transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
           loading ? "hidden" : "flex"
-        }  justify-center items-center rounded-full w-15 h-15 md:mb-0 md:bottom-10 mb-30 shrink-0 bg-white`}
+        }  justify-center items-center rounded-full h-11 w-25 md:mb-0 md:bottom-10 shrink-0 bg-white`}
       >
         +
       </div>

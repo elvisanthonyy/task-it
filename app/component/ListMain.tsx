@@ -131,8 +131,12 @@ const ListMain = ({ list }: ChildProps) => {
           </div>
           <div>{list?.title}</div>
         </div>
-
-        <div>{`Items: ${itemsLen}`}</div>
+        <div>
+          <div>Itens</div>
+          <div className="bg-[#404040] h-7 aspect-square rounded-full flex items-center justify-center">
+            {itemsLen}
+          </div>
+        </div>
       </div>
       {loading.main ? (
         <ItemsCompLoading />

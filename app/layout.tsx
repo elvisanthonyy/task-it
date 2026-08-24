@@ -29,12 +29,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} min-h-screen w-full ${geistMono.variable} antialiased`}
       >
-        <ListProvider>
-          <SessionWrapper>{children}</SessionWrapper>
-        </ListProvider>
-        <ToastContainer position="top-right" />
+        <div className="w-full bg-[url('/extras/mobile-background.png')] bg-no-repeat bg-fixed bg-cover min-h-screen">
+          <ListProvider>
+            <SessionWrapper>{children}</SessionWrapper>
+          </ListProvider>
+          <ToastContainer position="top-right" />
+        </div>
       </body>
     </html>
   );

@@ -10,7 +10,7 @@ interface ChildProps {
   name?: string;
 }
 
-const nav = async ({ name }: ChildProps) => {
+const Nav = async ({ name }: ChildProps) => {
   const headerList = headers();
   const referer = (await headerList).get("referer");
   const session = await getSession();
@@ -18,9 +18,9 @@ const nav = async ({ name }: ChildProps) => {
   return (
     <>
       <nav
-        className={`z-20 backdrop-blur-md px-[6%] border-b-1 md:border-b-1 flex justify-between ${
+        className={`z-20 fixed backdrop-blur-md px-[20px]  flex justify-between ${
           name !== "profile" && "md:w-[75%]"
-        }  items-center w-full h-20 md:h-22 absolute top-0 border-task-darkerWhite`}
+        }  items-center w-full h-[64px] bg-dark-black md:h-22 absolute top-0 border-task-darkerWhite`}
       >
         {name === "profile" && referer && (
           <Link href={referer}>
@@ -41,22 +41,22 @@ const nav = async ({ name }: ChildProps) => {
               name === "profile" && "hidden"
             } cursor-pointer items-center justify-start `}
           >
-            <div className="flex shrink-0 justify-center items-center w-8 h-8 rounded-full bg-purple-500 mr-4">
-              <FaUser className="text-md" />
+            <div className="flex shrink-0 justify-center items-center w-8 h-8 rounded-full bg-text-gray mr-4">
+              <FaUser className="text-md text-background" />
             </div>
 
-            <div className="text-md font-semibold mr-2 text-shadow-task-darkWhite">
+            <div className="text-[16px] font-semibold mr-1 text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[0]}
             </div>
-            <div className="text-md text-shadow-task-darkWhite">
+            <div className="text-[16px] text-shadow-task-darkWhite">
               {session?.user?.name?.split(" ")[1]}
             </div>
           </div>
         </Link>
         <Link href={"/"} className="flex w-[40%] justify-start">
           <div className="flex shrink-0 items-center justify-end w-full">
-            <GoChecklist className="text-2xl mr-3" />
-            <div className="text-md cursor-pointer">Task It</div>
+            <GoChecklist className="text-2xl hidden mr-3" />
+            <div className="text-[18px] cursor-pointer">Task It</div>
           </div>
         </Link>
       </nav>
@@ -64,4 +64,4 @@ const nav = async ({ name }: ChildProps) => {
   );
 };
 
-export default nav;
+export default Nav;

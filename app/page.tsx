@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex flex-col  min-h-screen">
+      <div className="flex w-full  flex-col  min-h-screen">
         <Nav />
         <MainHome />
         <NavigationButtons pageName="home" />
