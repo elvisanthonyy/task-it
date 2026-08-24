@@ -110,7 +110,7 @@ const ListMain = ({ list }: ChildProps) => {
         setLoading((prev) => ({ ...prev, main: false }));
         console.log(error);
       });
-  }, []);
+  }, [list._id]);
 
   useEffect(() => {
     fetchItems();
@@ -195,9 +195,7 @@ const ListMain = ({ list }: ChildProps) => {
                 </div>
                 <button
                   type="button"
-                  onClick={() => {
-                    isAdditemOpen ? addItem() : openAddItem();
-                  }}
+                  onClick={() => (isAdditemOpen ? addItem() : openAddItem())}
                   className="flex justify-center items-center text-2xl rounded-2xl cursor-pointer transition-all duration-700 ease-in-out nx:hover:w-40 h-13 w-[20%]  p-2 bg-white text-black ml-2"
                 >
                   {loading.addItem ? <LoadingComponent /> : "+"}

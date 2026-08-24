@@ -120,7 +120,7 @@ const MainHome = () => {
         setLoading(false);
         console.log(error);
       });
-  }, []);
+  }, [session?.user?.id]);
 
   const openAlert = (type: string, message: string) => {
     setAlertComp((prev) => ({ ...prev, type: type }));

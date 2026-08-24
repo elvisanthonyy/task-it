@@ -19,14 +19,16 @@ const ListComponent = ({ list, selectedList, setSelectedList }: ChildProps) => {
   const date = new Date(list.createdAt);
   const selectList = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    selectedList._id === list._id
-      ? setSelectedList({
-          _id: "",
-          title: "",
-          items: [],
-          createdAt: new Date(),
-        })
-      : setSelectedList(list);
+    if (selectedList._id === list._id) {
+      setSelectedList({
+        _id: "",
+        title: "",
+        items: [],
+        createdAt: new Date(),
+      });
+    } else {
+      setSelectedList(list);
+    }
   };
 
   return (
