@@ -23,12 +23,14 @@ interface ListRes {
 const MainHome = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
+  //to select list
   const [selectedList, setSelectedList] = useState<List>({
     _id: "",
     title: "",
     items: [],
     createdAt: new Date(),
   });
+
   const [isListModalOpen, setIsListModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
@@ -170,13 +172,13 @@ const MainHome = () => {
       </div>
       <div
         onClick={() => setIsEditModalOpen(false)}
-        className={`z-90 flex justify-center items-center top-0 left-0 ${
+        className={`z-90 flex justify-center items-end top-0 left-0 ${
           isEditModalOpen ? "fixed" : "hidden"
-        } w-full h-[100dvh] bg-black/90`}
+        } w-full h-[100dvh] bg-black/50`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="z-96 w-80 p-3 h- nx:w-100 nx:h-60 rounded-xl bg-task-lightGray"
+          className="z-96 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
         >
           <form className="flex flex-col h-full justify-center">
             <textarea
@@ -194,6 +196,8 @@ const MainHome = () => {
           </form>
         </div>
       </div>
+
+      {/* menu for selected lists*/}
       <div className="flex items-center w-full px-4 md:px-[5%] pt-5 md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
@@ -227,11 +231,11 @@ const MainHome = () => {
             </div>
           </div>
 
-          <div
-            onClick={() => openEditmodal()}
-            className="flex pointer-cursor gap-8"
-          >
-            <div className="w-[20px] aspect-square">
+          <div className="flex pointer-cursor gap-8">
+            <div
+              onClick={() => openEditmodal()}
+              className="w-[20px] aspect-square"
+            >
               <Image
                 src={"/icons/edit-icon.svg"}
                 alt="profile"
