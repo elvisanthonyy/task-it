@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { HiCheck } from "react-icons/hi";
 
 interface ChildProps {
