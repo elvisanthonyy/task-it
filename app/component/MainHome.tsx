@@ -148,26 +148,45 @@ const MainHome = () => {
       />
       <div
         onClick={() => setIsDeleteModalOpen(false)}
-        className={`z-80 flex justify-center items-center top-0 left-0 ${
+        className={`z-80 flex  justify-center items-center top-0 left-0 ${
           isDeleteModalOpen ? "fixed" : "hidden"
         } w-full h-[100dvh] bg-black/50`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="flex items-center justify-center w-70 h-40 md:w-90 md:h-60 rounded-xl bg-task-lightGray"
+          className="flex px-[32px] flex-col gap-5 items-center justify-center w-[80%] py-[32px] md:w-90 md:h-60 rounded-xl bg-[#eeee]"
         >
-          <button
-            onClick={deleteList}
-            className="bg-red-500 px-6 py-2 cursor-pointer text-sm rounded-md text-white  mx-3"
-          >
-            yes
-          </button>
-          <button
-            onClick={() => setIsDeleteModalOpen(false)}
-            className="bg-white px-6 py-2 rounded-md cursor-pointer text-sm text-black mx-3"
-          >
-            No
-          </button>
+          <div className="w-[68px] aspect-square">
+            <Image
+              src={"/icons/delete-icon.svg"}
+              height={200}
+              width={200}
+              className="w-full"
+              alt="delete icon"
+            />
+          </div>
+          <div className="text-center flex flex-col gap-1">
+            <div className="text-[18px] font-semibold tracking-tight text-[#1f1f1f]">
+              Delete List!!
+            </div>
+            <div className="text-deeper-text text-[14px]">
+              Are tou sure you want to delete?
+            </div>
+          </div>
+          <div className="w-full flex gap-3  h-[41px]">
+            <button
+              onClick={deleteList}
+              className="bg-background h-full flex items-center justify-center w-[50%] cursor-pointer text-[14px] rounded-[32px] text-white "
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => setIsDeleteModalOpen(false)}
+              className="border border-background h-full flex items-center justify-center w-[50%] cursor-pointer text-[14px] rounded-[32px] text-background "
+            >
+              Cancel{" "}
+            </button>
+          </div>
         </div>
       </div>
       <div
@@ -178,20 +197,20 @@ const MainHome = () => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="z-96 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
+          className="z-96 p-4 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
         >
           <form className="flex flex-col h-full justify-center">
             <textarea
               value={listTitle}
               onChange={(e) => setListTitle(e.target.value)}
-              className="flex py-3 justify-start border-0 bg-task-gray h-35 px-3 rounded-xl mb-5"
+              className="flex py-3 justify-start border-0 text-background h-35 px-3 rounded-[16px] bg-[#d0d0d0] mb-5"
             />
             <button
               type="button"
               onClick={editListTitle}
-              className="text-black mb-5 shrink-0 nx:mt-auto bg-white w-full mt-auto h-12 rounded-xl"
+              className="mb-5 shrink-0 text-text-gray nx:mt-auto bg-background w-full text-[14px] mt-auto h-12 rounded-4xl"
             >
-              Done
+              Update
             </button>
           </form>
         </div>
@@ -234,7 +253,7 @@ const MainHome = () => {
           <div className="flex pointer-cursor gap-8">
             <div
               onClick={() => openEditmodal()}
-              className="w-[20px] aspect-square"
+              className="w-[24px] aspect-square"
             >
               <Image
                 src={"/icons/edit-icon.svg"}
@@ -245,7 +264,10 @@ const MainHome = () => {
                 draggable={false}
               />
             </div>
-            <div onClick={() => openModal} className="w-[20px] aspect-square">
+            <div
+              onClick={() => setIsDeleteModalOpen(true)}
+              className="w-[24px]  cursor-pointer aspect-square"
+            >
               <Image
                 src={"/icons/delete.svg"}
                 alt="profile"
@@ -257,6 +279,7 @@ const MainHome = () => {
             </div>
           </div>
         </div>
+
         {loading ? (
           <MainCompLoading />
         ) : (

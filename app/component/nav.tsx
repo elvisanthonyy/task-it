@@ -20,7 +20,7 @@ const Nav = async ({ name }: ChildProps) => {
       <nav
         className={`z-20 fixed backdrop-blur-md px-[20px]  flex justify-between ${
           name !== "profile" && "md:w-[75%]"
-        }  items-center w-full h-[64px] bg-dark-black md:h-22 absolute top-0 border-task-darkerWhite`}
+        }  items-center w-full h-[64px] bg-background md:h-22 absolute top-0 border-task-darkerWhite`}
       >
         {name === "profile" && referer && (
           <Link href={referer}>
@@ -41,7 +41,7 @@ const Nav = async ({ name }: ChildProps) => {
               name === "profile" && "hidden"
             } cursor-pointer items-center justify-start `}
           >
-            <div className="flex shrink-0 justify-center items-center w-8 h-8 rounded-full bg-text-gray mr-4">
+            <div className="flex shrink-0 justify-center items-center w-10 aspect-square rounded-full bg-text-gray mr-4">
               <FaUser className="text-md text-background" />
             </div>
 

@@ -8,6 +8,7 @@ import LoadingComponent from "./LoadingComponent";
 import Alert from "./Alert";
 import { useRouter } from "next/navigation";
 import { GoArrowLeft } from "react-icons/go";
+import Image from "next/image";
 
 interface ChildProps {
   list: List;
@@ -124,16 +125,24 @@ const ListMain = ({ list }: ChildProps) => {
         message={alertComp.message}
       />
 
-      <div className="flex shrink-0 items-center border-b-1 text-md text-shadow-task-darkWhite justify-between z-5 px-[5%] h-16 mb-2 w-[100%]  border-task-darkerWhite left-0">
+      <div className="flex shrink-0 bg-background items-center text-md text-shadow-task-darkWhite justify-between z-5 px-[5%] h-16 mb-2 w-[100%]  left-0">
         <div className="flex h-full items-center">
           <div onClick={() => router.back()} className="mr-4 cursor-pointer">
-            <GoArrowLeft className="text-xl" />
+            <div className="w-6 aspect-square">
+              <Image
+                src={"/icons/back-icon.svg"}
+                height={50}
+                width={50}
+                alt="back btn"
+                className="w-full"
+              />
+            </div>
           </div>
-          <div>{list?.title}</div>
+          <div className="text-[16px]">{list?.title}</div>
         </div>
-        <div>
-          <div>Itens</div>
-          <div className="bg-[#404040] h-7 aspect-square rounded-full flex items-center justify-center">
+        <div className="flex w-fit items-center gap-2">
+          <div>Items</div>
+          <div className="bg-[#404040] h-7 text-[12px] aspect-square rounded-full flex items-center justify-center">
             {itemsLen}
           </div>
         </div>
@@ -142,9 +151,9 @@ const ListMain = ({ list }: ChildProps) => {
         <ItemsCompLoading />
       ) : (
         <>
-          <div className="block nx:px-[4%] nx:grid sm:px-[4%] gap-3 md:gap-5 px-[5%] place-items-center  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] scrollbar-hide overflow-y-scroll py-10 items-center w-full md:px-[5%] place-content-start">
+          <div className="block nx:px-[4%] nx:grid sm:px-[4%] gap-3 md:gap-5 px-[5%] place-items-center  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] scrollbar-hide overflow-y-scroll items-center w-full md:px-[5%] place-content-start">
             {items?.length === 0 ? (
-              <div className="absolute top-[50%] left-[50%] -translate-[50%]">
+              <div className="absolute text-[14px] text-text-gray top-[50%] left-[50%] -translate-[50%]">
                 {" "}
                 no items{" "}
               </div>
@@ -164,7 +173,7 @@ const ListMain = ({ list }: ChildProps) => {
             )}
 
             <form
-              className={`fixed overflow-hidden px-[6%] md:px-0 md:block lg:w-[40%] md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[65%] md:left-[4%] md:translate-x-0 -translate-x-[50%] left-[50%] bottom-25 mt-4 flex`}
+              className={`fixed overflow-hidden px-4 md:px-0 md:block lg:w-[40%] md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[65%] md:left-[4%] md:translate-x-0 -translate-x-[50%] left-[50%] bottom-25 mt-4 flex`}
             >
               <div className="w-full text-sm text-red-500 my-2 ml-1 px-2">
                 {nameMessage}
@@ -177,10 +186,10 @@ const ListMain = ({ list }: ChildProps) => {
                 >
                   <div
                     className={` absolute top-0 
-                     flex shrink-0 text-xl right-2 h-13 w-5 md:rounded-3xl bottom-25 md:bottom-10 text-task-darkerWhite cursor-pointer mr-2   justify-center items-center rounded-xl`}
+                     flex shrink-0 text-xl right-3 mr-3 h-13 w-5 md:rounded-3xl bottom-25 md:bottom-10 text-task-darkerWhite cursor-pointer justify-center items-center rounded-xl`}
                     onClick={closeAddItem}
                   >
-                    <MdClose />
+                    <MdClose className="text-icon-gray" />
                   </div>
                   <input
                     placeholder="Item name"
@@ -189,14 +198,14 @@ const ListMain = ({ list }: ChildProps) => {
                       setNameMessage("");
                       setName(e.target.value);
                     }}
-                    className={`p-2 px-4 text-[15px] h-13 w-full 
-                     rounded-2xl border-0 bg-task-gray focus:outline-none`}
+                    className={`p-2 mr-2 px-4 text-[14px] h-13 w-full 
+                     rounded-[32px] text-icon-gray border border-[#5B5A5A] bg-task-gray focus:outline-none`}
                   />
                 </div>
                 <button
                   type="button"
                   onClick={() => (isAdditemOpen ? addItem() : openAddItem())}
-                  className="flex justify-center items-center text-2xl rounded-2xl cursor-pointer transition-all duration-700 ease-in-out nx:hover:w-40 h-13 w-[20%]  p-2 bg-white text-black ml-2"
+                  className="flex justify-center items-center text-2xl rounded-[32px] cursor-pointer transition-all duration-700 ease-in-out nx:hover:w-40 h-11 w-25 px-3 bg-white text-black"
                 >
                   {loading.addItem ? <LoadingComponent /> : "+"}
                 </button>

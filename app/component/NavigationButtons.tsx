@@ -27,18 +27,18 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="transition-all md:py-16 md:rounded-none md:flex-col  duration-500 ease-in-out hover:text-white  flex-col justify-around items-center bg-back min-h-15 md:min-h-20 w-full  md:mb-0 bg-task-white/10"
+        className="transition-all md:py-16 md:rounded-none md:flex-col  duration-500 ease-in-out hover:text-white  flex-col justify-around items-center min-h-15 md:min-h-20 w-full  md:mb-0 "
       >
         <div
           className={` ${
             isMenuOpen ? "flex" : "hidden md:flex"
-          } flex border-b-1 md:absolute md:bottom-0 md:justify-center md:right-0 md:border-b-0 md:border-t-1 border-task-lightGray h-30 w-full justify-center items-center`}
+          } flex md:absolute md:bottom-0 md:justify-center md:right-0 md:border-b-0 md:border-t-1 border-task-lightGray h-30 w-full justify-center items-center`}
         >
           <div
             onClick={() => signOut()}
-            className="flex items-center cursor-pointer"
+            className="flex bg-icon-gray mb-3 gap-2 justify-center h-11 w-28 rounded-[32px] text-black items-center cursor-pointer"
           >
-            <FiLogOut className="text-lg mr-2" />
+            <FiLogOut className="text-lg" />
             <div>Log Out</div>
           </div>
         </div>
@@ -54,11 +54,15 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
           )}
           <Link href="/">
             <div
-              className={`flex justify-center  md:mb-10 items-center md:w-40 w-[66px] h-[35px] bg-[#2A3C31] md:rounded-2xl rounded-[32px]`}
+              className={`flex justify-center hover:bg-black/50  md:mb-10 items-center md:w-40 w-[66px] h-[35px] ${pageName === "home" && "bg-[#2A3C31]"}  md:rounded-2xl rounded-[32px]`}
             >
               <div className="w-[20px] aspect-square">
                 <Image
-                  src={"/icons/home-active.svg"}
+                  src={
+                    pageName === "home"
+                      ? "/icons/home-active.svg"
+                      : "/icons/home-inactive.svg"
+                  }
                   alt="home"
                   height={50}
                   width={50}
@@ -74,11 +78,15 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
             }`}
           >
             <div
-              className={`flex justify-center items-center md:w-40 md:rounded-2xl  w-[66px] h-11 rounded-[50%] hover:bg-black/50`}
+              className={`flex justify-center items-center md:w-40 md:rounded-2xl ${pageName === "profile" && "bg-[#2A3C31]"}  w-[66px] h-[35px] rounded-[32px] hover:bg-black/50`}
             >
               <div className="w-[20px] aspect-square">
                 <Image
-                  src={"/icons/profile-inactive.svg"}
+                  src={
+                    pageName === "profile"
+                      ? "/icons/profile-active.svg"
+                      : "/icons/profile-inactive.svg"
+                  }
                   alt="profile"
                   height={50}
                   width={50}
@@ -94,7 +102,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
             onClick={() =>
               isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
             }
-            className="md:hidden flex justify-center items-center cursor-pointer w-[66px] h-9 rounded-[50%] hover:bg-black/50"
+            className="md:hidden flex justify-center items-center cursor-pointer w-[66px] h-9 rounded-[32px] hover:bg-black/50"
           >
             {isMenuOpen ? (
               <IoMdClose className="text-lg text-task-darkWhite" />
