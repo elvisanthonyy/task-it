@@ -194,7 +194,7 @@ const ItemComponent = ({
       <div className="flex h-full items-center w-[60%]">
         {/* <div className="pl-4 text-[15px] text-green-400">{index + 1}.</div>*/}
         <p
-          className={`h-[70%] flex items-center text-[14px] rounded-md mx-1 pl-4 w-[90%]`}
+          className={`h-[70%] text-icon-gray flex items-center text-[14px] rounded-md mx-1 pl-4 w-[90%]`}
         >
           {item.name}
         </p>

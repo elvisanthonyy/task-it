@@ -11,7 +11,7 @@ const ProfileNav = ({ name }: ChildProps) => {
 
   return (
     <nav
-      className={`z-20 fixed backdrop-blur-md px-[20px]  flex justify-between items-center w-full h-[64px] bg-background md:h-22 absolute top-0 border-task-darkerWhite`}
+      className={`z-20 fixed backdrop-blur-md px-[20px]  flex justify-between items-center w-full h-[64px] bg-background md:h-22 top-0 border-task-darkerWhite`}
     >
       <div className="flex items-center gap-4">
         <div
@@ -26,7 +26,7 @@ const ProfileNav = ({ name }: ChildProps) => {
             className="w-full"
           />
         </div>
-        <h1 className="text-[18px] text-deeper-text">{name}</h1>
+        <h1 className="text-[18px] text-icon-gray">{name}</h1>
       </div>
     </nav>
   );

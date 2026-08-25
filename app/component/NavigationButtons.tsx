@@ -54,12 +54,12 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
           )}
           <Link href="/">
             <div
-              className={`flex justify-center hover:bg-black/50  md:mb-10 items-center md:w-40 w-[66px] h-[35px] ${pageName === "home" && "bg-[#2A3C31]"}  md:rounded-2xl rounded-[32px]`}
+              className={`flex justify-center hover:bg-black/50  md:mb-10 items-center md:w-40 w-[66px] h-[35px] ${pageName === "home" || "list" ? "bg-[#2A3C31]" : ""}  md:rounded-2xl rounded-[32px]`}
             >
               <div className="w-[20px] aspect-square">
                 <Image
                   src={
-                    pageName === "home"
+                    pageName === "home" || "list"
                       ? "/icons/home-active.svg"
                       : "/icons/home-inactive.svg"
                   }
