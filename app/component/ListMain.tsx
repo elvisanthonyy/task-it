@@ -152,7 +152,7 @@ const ListMain = ({ list }: ChildProps) => {
         <ItemsCompLoading />
       ) : (
         <>
-          <div className="block nx:px-[4%] nx:grid sm:px-4 gap-3 md:gap-5 px-4 place-items-center  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] items-center w-full md:px-[128px] place-content-start">
+          <div className="block nx:px-[4%] nx:grid sm:px-4 gap-2 md:gap-5 px-4 place-items-center  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] items-center w-full md:px-[128px] place-content-start">
             {items?.length === 0 ? (
               <div className="absolute text-[14px] text-text-gray top-[50%] left-[50%] -translate-[50%]">
                 {" "}
@@ -174,7 +174,7 @@ const ListMain = ({ list }: ChildProps) => {
             )}
 
             <form
-              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[25%] bg-amber-200 -translate-x-[50%] left-[50%] md:bottom-[160px] mt-4 flex`}
+              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[25%] bottom-[100px] -translate-x-[50%] left-[50%] md:bottom-[160px] mt-4 flex`}
             >
               <div className="w-full text-sm text-red-500 my-2 ml-1 px-2">
                 {nameMessage}
@@ -200,7 +200,7 @@ const ListMain = ({ list }: ChildProps) => {
                       setName(e.target.value);
                     }}
                     className={`p-2 mr-2 px-4 text-[14px] h-13 w-full 
-                     rounded-[32px] text-icon-gray border border-[#363636] bg-task-gray focus:outline-none`}
+                     rounded-[32px] text-icon-gray border border-[#525252] bg-task-gray focus:outline-none`}
                   />
                 </div>
                 <button
