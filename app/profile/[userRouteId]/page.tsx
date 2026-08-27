@@ -45,7 +45,7 @@ const page = async () => {
           </div>
         </div>
       </section>
-      <section className="w-full gap-8 flex flex-col px-4 py-4">
+      <section className="w-full md:px-[128px] gap-8 flex flex-col px-4 py-4">
         <ProfileItemComponent
           iconSrc="/icons/name.svg"
           name={data?.user?.name}

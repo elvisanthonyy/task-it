@@ -52,3 +52,16 @@ body {
 .help {
   color: #2e2e2e;
 }
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(1000px);
+  }
+}
+
+.loading-animation {
+  animation: move 2s ease-in-out infinite;
+}

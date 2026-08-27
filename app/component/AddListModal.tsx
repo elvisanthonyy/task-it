@@ -25,6 +25,10 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
   });
   const addList = () => {
     setLoading(true);
+    if (title.length < 1) {
+      setLoading(false);
+      return;
+    }
     api
       .post("/api/list/addlist", data)
       .then((response) => {
@@ -73,7 +77,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter list title"
-              className="bg-[#D0D0D0] outline-0 nx:h-[80%] text-[14px] px-3 pt-4 text-background h-[144px] md:h-[80%] rounded-[32px] shrink-0 w-full"
+              className="bg-[#D0D0D0] outline-0 nx:h-[80%] text-[14px] px-3 pt-4 text-background h-[144px] rounded-[32px] shrink-0 w-full"
             />
           </div>
           <div

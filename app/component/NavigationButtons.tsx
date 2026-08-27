@@ -23,7 +23,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
       onClick={() => setIsMenuOpen(false)}
       className={`${
         isMenuOpen && "h-screen bg-black/40 md:bg-black/0"
-      } flex justify-center w-full md:w-[25%] md:h-screen md:py-0 items-end fixed z-70 bottom-0 md:pb-0 md:translate-0 left-[50%] md:right-0 md:translate-x-1  md:left-auto -translate-x-[50%]`}
+      } flex justify-center md: w-full md:py-0 items-end fixed z-70 bottom-0 md:pb-0`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -31,8 +31,8 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
       >
         <div
           className={` ${
-            isMenuOpen ? "flex" : "hidden md:flex"
-          } flex md:absolute md:bottom-0 md:justify-center md:right-0 md:border-b-0 md:border-t-1 border-task-lightGray h-30 w-full justify-center items-center`}
+            isMenuOpen ? "flex" : "hidden"
+          } flex md:justify-center md:right-0 md:border-b-0 border-task-lightGray h-30 w-full justify-center items-center`}
         >
           <div
             onClick={() => signOut()}
@@ -43,7 +43,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
           </div>
         </div>
 
-        <div className=" flex md:flex-col md:h-[50%] justify-around items-center md:justify-start md:py-5 h-14 w-full bg-background">
+        <div className=" flex md:rounded-[32px] md:w-[25%] justify-between md:mx-auto items-center px-4 md:py-2 md:px-2 h-14 md:h-fit w-full bg-background">
           {pageName == "homeee" && (
             <div
               onClick={() => router.back()}
@@ -54,12 +54,12 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
           )}
           <Link href="/">
             <div
-              className={`flex justify-center hover:bg-black/50  md:mb-10 items-center md:w-40 w-[66px] h-[35px] ${pageName === "home" || "list" ? "bg-[#2A3C31]" : ""}  md:rounded-2xl rounded-[32px]`}
+              className={`flex justify-center hover:bg-black/50 items-center w-[66px] h-[35px] ${pageName === "home" ? "bg-[#2A3C31]" : ""}  md:rounded-2xl rounded-[32px]`}
             >
               <div className="w-[20px] aspect-square">
                 <Image
                   src={
-                    pageName === "home" || "list"
+                    pageName === "home"
                       ? "/icons/home-active.svg"
                       : "/icons/home-inactive.svg"
                   }
@@ -69,7 +69,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
                   className="h-full"
                 />
               </div>
-              <div className="hidden md:block">Home</div>
+              <div className="hidden">Home</div>
             </div>
           </Link>
           <Link
@@ -78,7 +78,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
             }`}
           >
             <div
-              className={`flex justify-center items-center md:w-40 md:rounded-2xl ${pageName === "profile" && "bg-[#2A3C31]"}  w-[66px] h-[35px] rounded-[32px] hover:bg-black/50`}
+              className={`flex justify-center items-center md:rounded-2xl ${pageName === "profile" && "bg-[#2A3C31]"}  w-[66px] h-[35px] rounded-[32px] hover:bg-black/50`}
             >
               <div className="w-[20px] aspect-square">
                 <Image
@@ -94,7 +94,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
                   draggable={false}
                 />
               </div>
-              <div className="hidden md:block">Profile</div>
+              <div className="hidden">Profile</div>
             </div>
           </Link>
 
@@ -102,7 +102,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
             onClick={() =>
               isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
             }
-            className="md:hidden flex justify-center items-center cursor-pointer w-[66px] h-9 rounded-[32px] hover:bg-black/50"
+            className="flex justify-center items-center cursor-pointer w-[66px] h-9 rounded-[32px] hover:bg-black/50"
           >
             {isMenuOpen ? (
               <IoMdClose className="text-lg text-task-darkWhite" />

@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} min-h-screen w-full ${geistMono.variable} antialiased`}
       >
-        <div className="w-full bg-[url('/extras/mobile-background.png')] bg-no-repeat bg-fixed bg-cover min-h-screen">
+        <div className="w-full md:bg-[url('/extras/dektop-background.png')] bg-[url('/extras/mobile-background.png')] bg-no-repeat bg-fixed bg-cover min-h-screen">
           <ListProvider>
             <SessionWrapper>{children}</SessionWrapper>
           </ListProvider>

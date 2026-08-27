@@ -140,12 +140,13 @@ const MainHome = () => {
   }, [session?.user?.email, status, session?.user?.id, getLists]);
 
   return (
-    <main className="flex min-h-[90vh] flex-col md:flex-row md:w-[90%] mx-auto items-center justify-start md:mt-18 mt-[64px] w-full">
+    <main className="flex min-h-[90vh] flex-col mx-auto items-center justify-start md:mt-18 mt-[64px] w-full">
       <Alert
         isAlertVisble={alertComp.state}
         alertType={alertComp.type}
         message={alertComp.message}
       />
+
       <div
         onClick={() => setIsDeleteModalOpen(false)}
         className={`z-80 flex  justify-center items-center top-0 left-0 ${
@@ -217,7 +218,7 @@ const MainHome = () => {
       </div>
 
       {/* menu for selected lists*/}
-      <div className="flex items-center w-full px-4 md:px-[5%] pt-5 md:pt-30 md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col md:w-[75%] justify-start">
+      <div className="flex items-center w-full px-4 md:h-[68px] pt-5 md:pt-[92px] md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
             selectedList._id.length > 0
@@ -285,7 +286,7 @@ const MainHome = () => {
         ) : (
           <>
             {" "}
-            <div className="relative grid grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 md:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
+            <div className="relative md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
               {isListModalOpen ? (
                 <AddListModal
                   getList={getLists}
@@ -308,7 +309,7 @@ const MainHome = () => {
                           `/list/${list._id}-${list.title.replaceAll(" ", "-")}`,
                         )
                       }
-                      className="relative aspect-square sm:aspect-[5/4] md:aspect-square bg-accent lg:aspect-[5/4] xl:aspect-video shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-[8px] w-full bg-taskhover:opacity-75"
+                      className="relative aspect-square sm:aspect-[5/4] md:aspect-square bg-accent lg:aspect-[5/4] xl:aspect-video shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-[8px] md:rounded-[24px] w-full bg-taskhover:opacity-75"
                     >
                       <ListComponent
                         list={list}
@@ -325,7 +326,7 @@ const MainHome = () => {
       </div>
       <div
         onClick={openModal}
-        className={`cursor-pointer md:w-40 md:rounded-2xl text-2xl fixed left-[50%] -translate-x-[50%] md:right-auto md:left-[5%] shadow-3xl md text-black bottom-[100px] transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
+        className={`cursor-pointer md:w-40  text-2xl fixed left-[50%] -translate-x-[50%] shadow-3xl md text-black bottom-[100px] md:bottom-[160px] transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
           loading ? "hidden" : "flex"
         }  justify-center items-center rounded-full h-11 w-25 md:mb-0 md:bottom-10 shrink-0 bg-white`}
       >

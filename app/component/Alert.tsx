@@ -10,9 +10,10 @@ interface ChildProps {
 const Alert = ({ message, isAlertVisble, alertType }: ChildProps) => {
   return (
     <div
-      className={`transition-all nx:w-[70%] shadow-2xl duration-300 ease-in-out flex text-black text-sm justify-center items-center z-100 w-[95%] fixed top-4 ${
+      onClick={() => (isAlertVisble = false)}
+      className={`transition-all shadow-sm duration-300 ease-in-out flex text-black text-sm justify-center items-center z-130 w-[80%] fixed top-6 ${
         isAlertVisble ? "translate-y-1" : "-translate-y-40"
-      } left-[50%] -translate-x-[50%] h-18 md:w-[50%] md:h-20 md:absolute bg-white rounded-lg`}
+      } left-[50%] -translate-x-[50%] h-[54px] md:w-80 md:absolute bg-white rounded-[32px]`}
     >
       <div className="absolute top-0 left-8 flex h-full w-fit items-center">
         {alertType === "okay" ? (
