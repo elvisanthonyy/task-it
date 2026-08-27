@@ -11,7 +11,7 @@ const Alert = ({ message, isAlertVisble, alertType }: ChildProps) => {
   return (
     <div
       onClick={() => (isAlertVisble = false)}
-      className={`transition-all shadow-sm duration-300 ease-in-out flex text-black text-sm justify-center items-center z-130 w-[80%] fixed top-6 ${
+      className={`transition-all shadow-sm duration-300 ease-in-out flex text-black text-sm justify-center items-center z-130 w-[80%] fixed top-5 ${
         isAlertVisble ? "translate-y-1" : "-translate-y-40"
       } left-[50%] -translate-x-[50%] h-[54px] md:w-80 md:absolute bg-white rounded-[32px]`}
     >

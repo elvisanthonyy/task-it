@@ -125,7 +125,7 @@ const ListMain = ({ list }: ChildProps) => {
         message={alertComp.message}
       />
 
-      <div className="flex shrink-0 md:px-[128px] bg-background items-center text-md text-shadow-task-darkWhite justify-between z-5 px-4 h-16 mb-5 w-full left-0">
+      <div className="flex shrink-0 md:px-[128px] bg-background items-center text-md text-shadow-task-darkWhite justify-between z-5 px-4 h-16 mb-3 w-full left-0">
         <div className="flex h-full items-center">
           <div onClick={() => router.back()} className="mr-4 cursor-pointer">
             <div className="w-6 aspect-square">
@@ -174,7 +174,7 @@ const ListMain = ({ list }: ChildProps) => {
             )}
 
             <form
-              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[25%] -translate-x-[50%] left-[50%] bottom-[160px] mt-4 flex`}
+              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[25%] bg-amber-200 -translate-x-[50%] left-[50%] md:bottom-[160px] mt-4 flex`}
             >
               <div className="w-full text-sm text-red-500 my-2 ml-1 px-2">
                 {nameMessage}
