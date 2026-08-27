@@ -60,7 +60,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
   return (
     <div
       onClick={() => setIsListModalOpen(false)}
-      className="z-80 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-[100dvh] bg-black/80"
+      className="z-80 flex shrink-0 justify-center items-end fixed top-0 left-0 w-full h-[100dvh] bg-black/25"
     >
       <Alert
         isAlertVisble={alertComp.state}
