@@ -76,7 +76,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter list title"
-            className="bg-[#D0D0D0] h-[144px] outline-0  text-[14px] px-3 pt-3 text-background rounded-[16px] shrink-0 w-full"
+            className="bg-[#D0D0D0] h-[144px] outline-0 text-[14px] px-3 pt-3 text-background rounded-[16px] shrink-0 w-full"
           />
 
           <div
