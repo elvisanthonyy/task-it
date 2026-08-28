@@ -152,7 +152,7 @@ const ListMain = ({ list }: ChildProps) => {
         <ItemsCompLoading />
       ) : (
         <>
-          <div className="flex flex-col nx:grid sm:px-4 gap-3 md:gap-5 px-4  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] w-full md:px-[128px] place-content-start">
+          <div className="flex flex-col nx:grid sm:px-4 gap-3 md:gap-5 px-4  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] pb-[100px] w-full md:px-[128px] place-content-start">
             {items?.length === 0 ? (
               <div className="absolute text-[14px] text-text-gray top-[50%] left-[50%] -translate-[50%]">
                 {" "}

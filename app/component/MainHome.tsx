@@ -295,7 +295,7 @@ const MainHome = () => {
         ) : (
           <>
             {" "}
-            <div className="relative top-[16px] md:top-[24px] md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
+            <div className="relative top-[16px] md:top-[24px] md:pb-[100px]md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
               {isListModalOpen ? (
                 <AddListModal
                   getList={getLists}
