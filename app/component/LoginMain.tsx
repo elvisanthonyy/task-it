@@ -9,37 +9,36 @@ const LoginMain = () => {
   console.log(callbackUrl);
   return (
     <main className="flex w-full md:bg-[url('/extras/background-ball-desktop.svg')] bg-[url('/extras/background-balls.png')] bg-no-repeat bg-fixed bg-cover h-screen justify-center items-center">
-      <div className="flex gap-6 md:border md:border-[#616161] md:bg-[#2E2E2E] md:rounded-[64px] flex-col md:h-[467px] md:w-[498px] justify-center w-full items-center">
+      <div className="flex gap-8 py-6 md:border border-t border-b border-[#616161] bg-[#2E2E2E] md:rounded-[44px] flex-col md:h-[416px] md:w-[468px] justify-center w-full items-center">
         <div className="w-full md:items-center px-4 gap-4 flex flex-col">
-          <div className="flex gap-2 items-center">
-            <div className="p-4 border border-[#616161] bg-background rounded-full">
+          <div className="flex gap-3 items-center">
+            <div className="p-4 border items-center border-[#616161] bg-icon-gray rounded-full">
               <div className="w-[16px] aspect-square">
                 <Image
                   height={50}
                   width={50}
                   alt="google icon"
                   src={"/icons/task-it-logo.svg"}
-                  className="w-full"
+                  className="w-full text-black"
                 />
               </div>
             </div>
-            <h1 className="text-xl font-semibold">TASK-IT</h1>
+            <h1 className="text-[18px] text-text-gray">TASK-IT</h1>
           </div>
-
-          <h1 className=" mx-2 tracking-tight text-xl font-light">
-            Log in to your account
-          </h1>
         </div>
 
-        <div className="w-full md:w-[70%]">
-          <p className="text-left md:text-center md:bg-background/0 border-[#828282] bg-background py-4 w-full border-t border-b text-[#B2B2B2] text-[14px] px-4 md:px-[20%]">
+        <div className="w-full flex flex-col gap-3 md:w-[70%]">
+          <h1 className=" mx-2 px-3 md:text-center tracking-tight text-[18px] font-light">
+            Log in to your account
+          </h1>
+          <p className="text-left md:bg-[#292929] md:border-[#505050] md:rounded-[8px] md:borderr md:text-center md:py-4 w-full text-deeper-text text-[14px] pl-5 pr-12 md:px-[20%]">
             Create your to-do list and mamange and track progress
           </p>
         </div>
         <div className="py-0 rounded-tl-xl rounded-tr-xl pb-0 px-[5%] flex flex-col justify-center items-center w-full">
           <div
             onClick={() => signIn("google", { callbackUrl })}
-            className="flex gap-2 transition-all duration-800 nx:hover:rounded-4xl ease-in-out hover:bg-white hover:text-black mx-auto justify-center items-center rounded-[42px] w-full shrink-0 nx:w-90 cursor-pointer h-[56px] mt-4 bg-white text-black  border-white border-1"
+            className="flex gap-2 transition-all duration-800 nx:hover:rounded-4xl ease-in-out hover:bg-white hover:text-black mx-auto justify-center items-center rounded-[42px] w-full shrink-0 nx:w-90 cursor-pointer h-[56px] mt-2 md:mt-4 bg-white text-black  border-white border-1"
           >
             <div className="h-5 aspect-square">
               <Image

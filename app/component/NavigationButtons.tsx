@@ -32,7 +32,7 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
         <div
           className={` ${
             isMenuOpen ? "flex" : "hidden"
-          } flex md:justify-center md:right-0 md:w-100 md:rounded-2xl md:mb-3 md:mx-auto bg-accent md:border-b-0 border-task-lightGray h-30 w-full justify-center items-center`}
+          } flex md:justify-center md:right-0 md:w-100 md:rounded-2xl rounded-tl-[16px] rounded-tr-[16px] md:mb-3 md:mx-auto bg-accent md:border-b-0 border-task-lightGray h-30 w-full justify-center items-center`}
         >
           <div
             onClick={() => signOut()}
