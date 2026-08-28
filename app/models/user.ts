@@ -29,7 +29,7 @@ const userSchema: Schema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const User = models?.User || mongoose.model<IUser>("User", userSchema);

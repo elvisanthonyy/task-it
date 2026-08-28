@@ -11,7 +11,7 @@ import { authOptions } from "../../auth/[...nextauth]/route";
 const handler = async () => {
   dbConnect();
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   if (!session) {
     return NextResponse.json({ message: "session not found" }, { status: 401 });
   }

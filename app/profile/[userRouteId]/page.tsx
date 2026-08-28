@@ -6,12 +6,13 @@ import { FaRegCalendarAlt, FaRegEnvelope } from "react-icons/fa";
 import ProfileNav from "@/app/component/ProfileNav";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import ProfileItemComponent from "@/app/component/ProfileItemComponent";
+import Image from "next/image";
 
 const page = async () => {
   const session = await getSession();
   const cookieHeader = (await cookies()).toString();
   const basesURL = process.env.BASE_URL;
-  if (!session) return redirect("login");
+  if (!session) return redirect("/login");
 
   const res = await fetch(`${basesURL}/api/user/get`, {
     method: "GET",
@@ -37,11 +38,20 @@ const page = async () => {
   return (
     <div className="relative flex flex-col gap-7 pt-[64px] top-0 left-0 h-[100dvh] ">
       <ProfileNav name={data?.user?.name} />
-      <section className="w-full flex flex-col items-start relative h-[280px]">
-        <div className="w-full h-[188px] bg-[#0A0A0A]"></div>
+      <section className="w-full flex flex-col items-start relative min-h-[280px] md:h-[400px]">
+        <div className="w-full h-[188px] md:h-[300px] bg-[#0A0A0A]"></div>
         <div className="absolute bottom-0 left-[50%] translate-x-[-50%]">
-          <div className="h-[153px] rounded-full aspect-square bg-white">
-            <div></div>
+          <div className="h-[153px] md:h-[250px] overflow-hidden rounded-full aspect-square bg-white">
+            <div className="w-full aspect-square">
+              <Image
+                src={data?.user?.avatar || ""}
+                height={1000}
+                width={1000}
+                alt="user image"
+                draggable={false}
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "http://localhost:3000/login",
+    signIn: `${process.env.NEXTAUTH_URL}/login`,
   },
   callbacks: {
     async redirect({ baseUrl }) {
@@ -35,10 +35,12 @@ export const authOptions: NextAuthOptions = {
         const user = new User({
           name: profile.name,
           email: profile.email,
+          avatar: profile.picture,
         });
         await user.save();
       } else {
         user.name = profile.name;
+        user.avatar = profile.picture;
         await user.save();
       }
       return true;
@@ -49,6 +51,7 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         token.accessToken = account?.access_token;
         token.idToken = account?.id_token;
+        token.picture = profile?.picture;
         if (user) {
           token.userId = user._id;
         }
@@ -63,6 +66,7 @@ export const authOptions: NextAuthOptions = {
           session.accessToken = token.accessToken as string;
           session.idToken = token.idToken as string;
           session.user.id = dbUser._id.toString();
+          session.user.avatar = token.picture;
         }
       }
 

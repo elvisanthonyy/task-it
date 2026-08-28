@@ -6,7 +6,7 @@ declare module "next-auth" {
       id?: string;
       name?: string | null;
       email?: string | null;
-      image?: string | null;
+      avatar?: string | null;
     };
     accessToken?: string;
     idToken?: string;
@@ -19,5 +19,10 @@ declare module "next-auth" {
   interface jwt {
     accessToken?: string;
     idToken?: string;
+    avatar?: string;
+  }
+
+  interface Profile {
+    picture?: string;
   }
 }

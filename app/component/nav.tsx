@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import { headers } from "next/headers";
+import Image from "next/image";
 
 interface ChildProps {
   name?: string;
@@ -14,6 +15,8 @@ const Nav = async ({ name }: ChildProps) => {
   const headerList = headers();
   const referer = (await headerList).get("referer");
   const session = await getSession();
+
+  console.log(session?.user?.avatar);
 
   return (
     <>
@@ -39,8 +42,17 @@ const Nav = async ({ name }: ChildProps) => {
               name === "profile" && "hidden"
             } cursor-pointer items-center justify-start `}
           >
-            <div className="flex shrink-0 justify-center items-center w-10 aspect-square rounded-full bg-icon-gray mr-4">
-              <FaUser className="text-xl text-background" />
+            <div className="flex shrink-0 overflow-hidden justify-center items-center w-10 aspect-square rounded-full bg-background mr-4">
+              <div className="w-full aspect-square">
+                <Image
+                  src={session?.user?.avatar || ""}
+                  height={50}
+                  width={50}
+                  alt="user image"
+                  draggable={false}
+                  className="w-full"
+                />
+              </div>
             </div>
 
             <div className="text-[16px] font-semibold mr-1 text-shadow-task-darkWhite">
