@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Item } from "./ListMain";
-import { FaTrashAlt } from "react-icons/fa";
-import { FiEdit } from "react-icons/fi";
+import LoadingComponent from "./LoadingComponent";
 import { HiCheck } from "react-icons/hi";
 import api from "../utils/api";
 import Alert from "./Alert";
@@ -28,6 +27,7 @@ const ItemComponent = ({
   const [isDeleteMenuOpen, setIsDeleteMenuOpen] = useState(false);
   const [isEditMenuOpen, setIsEditMenuOpen] = useState(false);
   const [itemTitle, setItemTitle] = useState<string>("");
+  const [editLoading, setEditLoading] = useState(false);
   const [inputState, setInputState] = useState<boolean>(true);
   const [name, setName] = useState<string>(item.name);
   let varStatus;
@@ -84,9 +84,11 @@ const ItemComponent = ({
     name: itemTitle,
   };
   const editItem = () => {
+    setEditLoading(true);
     api
       .put("/api/item/edit", itemData)
       .then((response) => {
+        setEditLoading(false);
         if (response.data.message === "Item updated") {
           openAlert(response.data.status, response.data.message);
           setTimeout(() => {
@@ -94,6 +96,7 @@ const ItemComponent = ({
           }, 1000);
           getItems?.();
         } else {
+          setEditLoading(false);
           openAlert(response.data.status, response.data.message);
         }
       })
@@ -132,7 +135,7 @@ const ItemComponent = ({
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="z-96 p-4 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
+          className="z-96 md:rounded-[32px] md:absolute md:top-[50%] md:w-100 md:left-[50%] md:translate-[-50%] md:w p-4 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
         >
           <form className="flex flex-col h-full justify-center">
             <textarea
@@ -143,9 +146,9 @@ const ItemComponent = ({
             <button
               type="button"
               onClick={editItem}
-              className="mb-5 shrink-0 text-text-gray nx:mt-auto bg-background w-full text-[14px] mt-auto h-12 rounded-4xl"
+              className="mb-5 md:mb-0 shrink-0 flex items-center justify-center text-text-gray nx:mt-auto bg-background w-full text-[14px] mt-auto h-12 rounded-4xl"
             >
-              Update
+              {editLoading ? <LoadingComponent /> : "Update"}
             </button>
           </form>
         </div>
@@ -169,13 +172,13 @@ const ItemComponent = ({
           </div>
           <div className="text-center flex flex-col gap-1">
             <div className="text-[18px] font-semibold tracking-tight text-[#1f1f1f]">
-              Delete List!!
+              Delete Item!!
             </div>
             <div className="text-deeper-text text-[14px]">
               Are tou sure you want to delete?
             </div>
           </div>
-          <div className="w-full flex gap-3  h-[41px]">
+          <div className="w-full flex gap-3 shrink-0  h-[41px]">
             <button
               onClick={deleteItem}
               className="bg-background h-full flex items-center justify-center w-[50%] cursor-pointer text-[14px] rounded-[32px] text-white "

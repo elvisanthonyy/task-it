@@ -32,11 +32,11 @@ const NavigationButtons = ({ pageName }: ChildProps) => {
         <div
           className={` ${
             isMenuOpen ? "flex" : "hidden"
-          } flex md:justify-center md:right-0 md:border-b-0 border-task-lightGray h-30 w-full justify-center items-center`}
+          } flex md:justify-center md:right-0 md:w-100 md:rounded-2xl md:mb-3 md:mx-auto bg-accent md:border-b-0 border-task-lightGray h-30 w-full justify-center items-center`}
         >
           <div
             onClick={() => signOut()}
-            className="flex bg-icon-gray md:w-40 mb-3 bg- gap-2 justify-center h-11 w-28 rounded-[32px] text-black items-center cursor-pointer"
+            className="flex bg-icon-gray md:w-40  gap-2 justify-center h-11 w-28 rounded-[32px] text-black items-center cursor-pointer"
           >
             <FiLogOut className="text-[16px]" />
             <div className="text-[14px] font-medium">Log Out</div>

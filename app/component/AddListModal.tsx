@@ -69,7 +69,7 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
       />
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col absolute md:rounded-[32px] py-4 px-4 justify-start md:justify-center rounded-tl-[32px] rounded-tr-[32px] nx:w-100 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-fit backdrop-blur-md bg-icon-gray"
+        className="flex flex-col absolute md:rounded-[32px] py-4 px-4 justify-start md:justify-center rounded-tl-[32px] rounded-tr-[32px] md:w-100 md:top-[50%] md:left-[50%] md:-translate-[50%] items-center w-full h-fit backdrop-blur-md bg-icon-gray"
       >
         <form className="w-full gap-4 flex flex-col justify-start items-center">
           <textarea

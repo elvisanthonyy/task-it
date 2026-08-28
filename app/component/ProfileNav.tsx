@@ -28,6 +28,15 @@ const ProfileNav = ({ name }: ChildProps) => {
         </div>
         <h1 className="text-[18px] text-icon-gray">{name}</h1>
       </div>
+      <div className="w-[16px] aspect-square">
+        <Image
+          height={50}
+          width={50}
+          alt="task it icon"
+          src={"/icons/task-it-logo.svg"}
+          className="w-full"
+        />
+      </div>
     </nav>
   );
 };

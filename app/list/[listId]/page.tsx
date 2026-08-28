@@ -4,6 +4,23 @@ import { getSession } from "@/libs/session";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+//list name for title
+type Props = {
+  searchParams: Promise<{
+    list: string;
+  }>;
+};
+
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
+  const { list } = await searchParams;
+  return {
+    title: `List - ${list}`,
+  };
+}
 
 const page = async ({ params }: { params: { listId: string } }) => {
   const cookieHeader = (await cookies()).toString();

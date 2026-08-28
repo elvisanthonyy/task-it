@@ -1,5 +1,6 @@
 "use client";
-import React, { useCallback } from "react";
+import LoadingComponent from "./LoadingComponent";
+import { useCallback } from "react";
 import { useState, useEffect } from "react";
 import AddListModal from "./AddListModal";
 import { useSession } from "next-auth/react";
@@ -35,6 +36,7 @@ const MainHome = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
+  const [editLoading, setEditLoading] = useState(false);
   const [alertComp, setAlertComp] = useState({
     state: false,
     type: "",
@@ -85,9 +87,11 @@ const MainHome = () => {
 
   //function containing api to edit list title
   const editListTitle = () => {
+    setEditLoading(true);
     api
       .put("/api/list/edit", editListData)
       .then((response) => {
+        setEditLoading(false);
         setSelectedList({
           _id: "",
           title: "",
@@ -101,6 +105,7 @@ const MainHome = () => {
         }
       })
       .catch((error) => {
+        setEditLoading(false);
         console.log(error);
       });
   };
@@ -198,20 +203,20 @@ const MainHome = () => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="z-96 p-4 w-full bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
+          className="z-96 p-4 w-full md:absolute md:rounded-[32px] md:top-[50%] md:w-100 md:left-[50%] md:translate-[-50%] bg-icon-gray rounded-tr-[32px] rounded-tl-[32px]"
         >
           <form className="flex flex-col h-full justify-center">
             <textarea
               value={listTitle}
               onChange={(e) => setListTitle(e.target.value)}
-              className="flex py-3 justify-start border-0 text-background h-35 px-3 rounded-[16px] bg-[#d0d0d0] mb-5"
+              className="flex py-3 outline-0 justify-start border-0 text-background h-35 px-3 rounded-[16px] bg-[#d0d0d0] mb-5"
             />
             <button
               type="button"
               onClick={editListTitle}
-              className="mb-5 shrink-0 text-text-gray nx:mt-auto bg-background w-full text-[14px] mt-auto h-12 rounded-4xl"
+              className="mb-5 md:mb-0 flex items-center justify-center cursor-pointer shrink-0 text-text-gray nx:mt-auto bg-background w-full text-[14px] mt-auto h-12 rounded-4xl"
             >
-              Update
+              {editLoading ? <LoadingComponent /> : "Update"}
             </button>
           </form>
         </div>
@@ -310,7 +315,7 @@ const MainHome = () => {
                       key={list._id}
                       onClick={() =>
                         router.push(
-                          `/list/${list._id}-${list.title.replaceAll(" ", "-")}`,
+                          `/list/${list._id}-${list.title.replaceAll(" ", "-")}?list=${list.title}`,
                         )
                       }
                       className="relative aspect-square sm:aspect-[5/4] md:aspect-square bg-accent lg:aspect-[5/4] xl:aspect-video shrink-0 py-3 px-1 cursor-pointer flex flex-col justify-end  items-start rounded-[8px] md:rounded-[24px] w-full bg-taskhover:opacity-75"

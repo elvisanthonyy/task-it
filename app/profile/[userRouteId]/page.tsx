@@ -1,12 +1,25 @@
 import { getSession } from "@/libs/session";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { FaUser } from "react-icons/fa";
-import { FaRegCalendarAlt, FaRegEnvelope } from "react-icons/fa";
+import { Metadata } from "next";
 import ProfileNav from "@/app/component/ProfileNav";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import ProfileItemComponent from "@/app/component/ProfileItemComponent";
 import Image from "next/image";
+
+type Props = {
+  params: Promise<{
+    userRouteId: string;
+  }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { userRouteId } = await params;
+  const justName = userRouteId.split("-");
+  return {
+    title: `${justName[0]} ${justName[1]}'s Profile`,
+  };
+}
 
 const page = async () => {
   const session = await getSession();

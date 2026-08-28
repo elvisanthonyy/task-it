@@ -1,7 +1,6 @@
 import React from "react";
 import { getSession } from "@/libs/session";
 import { GoChecklist } from "react-icons/go";
-import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import { headers } from "next/headers";
@@ -63,10 +62,20 @@ const Nav = async ({ name }: ChildProps) => {
             </div>
           </div>
         </Link>
-        <Link href={"/"} className="flex w-[40%] justify-start">
+        <Link href={"/"} className="flex w-[40%] items-center justify-start">
           <div className="flex shrink-0 items-center justify-end w-full">
-            <GoChecklist className="text-2xl hidden mr-3" />
-            <div className="text-[18px] cursor-pointer">Task It</div>
+            <div className="text-[16px] flex items-center gap-4 cursor-pointer">
+              Task It
+              <div className="w-[16px] mb-1 aspect-square">
+                <Image
+                  height={50}
+                  width={50}
+                  alt="task it icon"
+                  src={"/icons/task-it-logo.svg"}
+                  className="w-full"
+                />
+              </div>
+            </div>
           </div>
         </Link>
       </nav>
