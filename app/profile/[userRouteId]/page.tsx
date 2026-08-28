@@ -39,9 +39,19 @@ const page = async () => {
     <div className="relative flex flex-col gap-7 pt-[64px] top-0 left-0 h-[100dvh] ">
       <ProfileNav name={data?.user?.name} />
       <section className="w-full flex flex-col items-start relative min-h-[280px] md:h-[400px]">
-        <div className="w-full h-[188px] md:h-[300px] bg-[#0A0A0A]"></div>
-        <div className="absolute bottom-0 left-[50%] translate-x-[-50%]">
+        <div className="w-full h-[188px] md:h-[300px] bg-[#212824]"></div>
+        <div className="absolute bottom-5 left-[50%] translate-x-[-50%]">
           <div className="h-[153px] md:h-[250px] overflow-hidden rounded-full aspect-square bg-white">
+            <div className="w-[28px] md:w-[50px] md:right-6 absolute bottom-2 right-3.5 aspect-square">
+              <Image
+                src={"/icons/verified.svg"}
+                height={50}
+                width={50}
+                alt="user image"
+                draggable={false}
+                className="w-full"
+              />
+            </div>
             <div className="w-full aspect-square">
               <Image
                 src={data?.user?.avatar || ""}
@@ -55,7 +65,7 @@ const page = async () => {
           </div>
         </div>
       </section>
-      <section className="w-full md:px-[128px] gap-8 flex flex-col px-4 py-4">
+      <section className="w-full md:px-[128px] gap-8 flex flex-col px-4">
         <ProfileItemComponent
           iconSrc="/icons/name.svg"
           name={data?.user?.name}

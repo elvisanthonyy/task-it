@@ -24,7 +24,7 @@ const ProfileItemComponent = ({ iconSrc, name, label }: ChildProps) => {
         )}
       </div>
 
-      <div className="text-[12px] text-deeper-text">
+      <div className="text-[14px] text-deeper-text">
         <h1 className="text-[16px] text-icon-gray">
           {label === "Created At" ? formatedDate : name}
         </h1>

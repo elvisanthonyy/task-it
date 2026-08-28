@@ -69,20 +69,19 @@ const AddListModal = ({ setIsListModalOpen, getList }: ChildProps) => {
       />
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col relative py-4 px-4 justify-start rounded-tl-[48px] rounded-tr-[48px] nx:absolute nx:w-100 nx:h-90 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-fit backdrop-blur-md nx:rounded-2xl bg-icon-gray"
+        className="flex flex-col absolute md:rounded-[32px] py-4 px-4 justify-start md:justify-center rounded-tl-[32px] rounded-tr-[32px] nx:w-100 nx:top-[50%] nx:left-[50%] nx:-translate-[50%] items-center w-full h-fit backdrop-blur-md bg-icon-gray"
       >
-        <form className="w-full gap-4 h-full flex flex-col justify-start items-center">
-          <div className="flex flex-col w-full h-fit">
-            <textarea
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter list title"
-              className="bg-[#D0D0D0] outline-0 nx:h-[80%] text-[14px] px-3 pt-4 text-background h-[144px] rounded-[32px] shrink-0 w-full"
-            />
-          </div>
+        <form className="w-full gap-4 flex flex-col justify-start items-center">
+          <textarea
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter list title"
+            className="bg-[#D0D0D0] h-[144px] outline-0  text-[14px] px-3 pt-3 text-background rounded-[16px] shrink-0 w-full"
+          />
+
           <div
             onClick={addList}
-            className="cursor-pointer mb-8 text-[14px] flex shrink-0 justify-center mt-auto items-center md:mb-10  w-full h-[50px] bg-background rounded-[32px] text-text-gray"
+            className="cursor-pointer md:mb-0 mb-8 text-[14px] flex shrink-0 justify-center mt-auto items-center  w-full h-[50px] bg-background rounded-[32px] text-text-gray"
           >
             {loading ? <LoadingComponent /> : "Add"}
           </div>

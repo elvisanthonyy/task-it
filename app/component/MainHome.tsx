@@ -140,7 +140,7 @@ const MainHome = () => {
   }, [session?.user?.email, status, session?.user?.id, getLists]);
 
   return (
-    <main className="flex min-h-[90vh] flex-col mx-auto items-center justify-start md:mt-18 mt-[64px] w-full">
+    <main className="flex relative top-[64px] min-h-[90vh] flex-col mx-auto items-center justify-start w-full">
       <Alert
         isAlertVisble={alertComp.state}
         alertType={alertComp.type}
@@ -218,7 +218,7 @@ const MainHome = () => {
       </div>
 
       {/* menu for selected lists*/}
-      <div className="flex items-center w-full px-4 md:h-[68px] pt-5 md:pt-[92px] md:absolute top-0 min-h-[90vh] h-auto left-0 flex-col justify-start">
+      <div className="flex items-center w-full px-4 md:h-[68px] absolute top-0 min-h-[90vh] left-0 flex-col justify-start">
         <div
           className={`z-20 px-6 transition-all duration-500 ease-in-out ${
             selectedList._id.length > 0
@@ -226,7 +226,7 @@ const MainHome = () => {
               : "opacity-0 scale-60 pointer-events-auto"
           }  ${
             selectedList._id.length > 0 ? "flex" : "hidden"
-          } justify-between items-center fixed top-0 md:w-full md:mx-0 w-full md:mt-5 bg-background h-[64px]`}
+          } justify-between md:px-[128px] items-center fixed top-0 md:w-full md:mx-0 w-full bg-background h-[64px]`}
         >
           <div
             className="cursor-pointer"
@@ -251,32 +251,36 @@ const MainHome = () => {
             </div>
           </div>
 
-          <div className="flex pointer-cursor gap-8">
-            <div
-              onClick={() => openEditmodal()}
-              className="w-[24px] aspect-square"
-            >
-              <Image
-                src={"/icons/edit-icon.svg"}
-                alt="profile"
-                height={50}
-                width={50}
-                className="h-full"
-                draggable={false}
-              />
+          <div className="flex rounded-[12px] pointer-cursor gap-8">
+            <div className="flex cursor-pointer bg-dark-black p-2 rounded-full">
+              <div
+                onClick={() => openEditmodal()}
+                className="w-[20px] aspect-square"
+              >
+                <Image
+                  src={"/icons/edit-icon.svg"}
+                  alt="profile"
+                  height={50}
+                  width={50}
+                  className="h-full"
+                  draggable={false}
+                />
+              </div>
             </div>
-            <div
-              onClick={() => setIsDeleteModalOpen(true)}
-              className="w-[24px]  cursor-pointer aspect-square"
-            >
-              <Image
-                src={"/icons/delete.svg"}
-                alt="profile"
-                height={50}
-                width={50}
-                className="h-full"
-                draggable={false}
-              />
+            <div className="flex cursor-pointer bg-dark-black p-2 rounded-full">
+              <div
+                onClick={() => setIsDeleteModalOpen(true)}
+                className="w-[20px] aspect-square"
+              >
+                <Image
+                  src={"/icons/delete.svg"}
+                  alt="profile"
+                  height={50}
+                  width={50}
+                  className="h-full"
+                  draggable={false}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -286,7 +290,7 @@ const MainHome = () => {
         ) : (
           <>
             {" "}
-            <div className="relative md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
+            <div className="relative top-[16px] md:top-[24px] md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
               {isListModalOpen ? (
                 <AddListModal
                   getList={getLists}
@@ -326,9 +330,9 @@ const MainHome = () => {
       </div>
       <div
         onClick={openModal}
-        className={`cursor-pointer md:w-40  text-2xl fixed left-[50%] -translate-x-[50%] shadow-3xl md text-black bottom-[100px] md:bottom-[160px] transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
+        className={`cursor-pointer md:w-40  text-2xl fixed left-[50%] -translate-x-[50%] shadow-3xl md text-black bottom-[100px] md:bottom-[136px] transition-all duration-700 ease-in-out mx-auto nx:hover:w-50 ${
           loading ? "hidden" : "flex"
-        }  justify-center items-center rounded-full h-11 w-25 md:mb-0 md:bottom-10 shrink-0 bg-white`}
+        }  justify-center items-center rounded-full h-11 w-25 md:mb-0 md:bottom-10 shrink-0 bg-icon-gray`}
       >
         +
       </div>

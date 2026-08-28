@@ -117,7 +117,7 @@ const ItemComponent = ({
   return (
     <div
       key={item._id}
-      className="flex rounded-2xl my-3 nx:my-0 text-[12px] items-center justify-between w-full nx:w-full h-[57px] pr-4  bg-[#2a2a2a] border border-[#5B5A5A]"
+      className="flex rounded-2xl nx:my-0 text-[12px] items-center justify-between w-full nx:w-full h-[57px] pr-4  bg-[#2a2a2a] border border-[#5B5A5A]"
     >
       <Alert
         isAlertVisble={alertComp.state}

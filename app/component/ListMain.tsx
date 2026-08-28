@@ -125,7 +125,7 @@ const ListMain = ({ list }: ChildProps) => {
         message={alertComp.message}
       />
 
-      <div className="flex shrink-0 md:px-[128px] bg-background items-center text-md text-shadow-task-darkWhite justify-between z-5 px-4 h-16 mb-3 w-full left-0">
+      <div className="flex shrink-0 md:px-[128px] bg-background items-center text-md text-shadow-task-darkWhite justify-between z-5 px-4 h-16 mb-4 md:mb-6 w-full left-0">
         <div className="flex h-full items-center">
           <div onClick={() => router.back()} className="mr-4 cursor-pointer">
             <div className="w-6 aspect-square">
@@ -152,7 +152,7 @@ const ListMain = ({ list }: ChildProps) => {
         <ItemsCompLoading />
       ) : (
         <>
-          <div className="block nx:px-[4%] nx:grid sm:px-4 gap-2 md:gap-5 px-4 place-items-center  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] items-center w-full md:px-[128px] place-content-start">
+          <div className="flex flex-col nx:grid sm:px-4 gap-3 md:gap-5 px-4  nx:grid-cols-2 md:grid-col-2 xl:grid-cols-3 min-w-full nx:items-start mt-0 h-[80dvh] w-full md:px-[128px] place-content-start">
             {items?.length === 0 ? (
               <div className="absolute text-[14px] text-text-gray top-[50%] left-[50%] -translate-[50%]">
                 {" "}
@@ -174,12 +174,12 @@ const ListMain = ({ list }: ChildProps) => {
             )}
 
             <form
-              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between md:items-start flex-col w-full text-2xl justify-center md:w-[25%] bottom-[100px] -translate-x-[50%] left-[50%] md:bottom-[160px] mt-4 flex`}
+              className={`fixed overflow-hidden px-4 md:px-0 md:block md:justify-between flex-col w-full text-2xl justify-center md:w-[25%] bottom-[100px] md:bottom-[136px] -translate-x-[50%] left-[50%] mt-4 flex`}
             >
               <div className="w-full text-sm text-red-500 my-2 ml-1 px-2">
                 {nameMessage}
               </div>
-              <div className="flex  shrink-0 my-2 mx-auto md:my-0 w-[100%] items-center justify-between ">
+              <div className="flex  shrink-0 mx-auto md:my-0 w-[100%] items-center justify-between ">
                 <div
                   className={` flex shrink-0 h-full w-[80%] relative trasition-all items-center ease-in duration-300 ${
                     isAdditemOpen ? "flex" : "hidden"
@@ -206,7 +206,7 @@ const ListMain = ({ list }: ChildProps) => {
                 <button
                   type="button"
                   onClick={() => (isAdditemOpen ? addItem() : openAddItem())}
-                  className="flex justify-center items-center text-2xl rounded-[32px] cursor-pointer transition-all duration-700 ease-in-out nx:hover:w-40 h-11 w-25 px-3 bg-white text-black"
+                  className="flex justify-center items-center text-2xl rounded-[32px] cursor-pointer transition-all duration-700 ease-in-out nx:hover:w-40 h-13 w-25 px-3 bg-white text-black"
                 >
                   {loading.addItem ? <LoadingComponent /> : "+"}
                 </button>
