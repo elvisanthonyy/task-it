@@ -272,10 +272,10 @@ const MainHome = () => {
                 />
               </div>
             </div>
-            <div className="flex cursor-pointer bg-dark-black p-2 rounded-full">
+            <div className="flex cursor-pointer bg-dark-black p-1 rounded-full">
               <div
                 onClick={() => setIsDeleteModalOpen(true)}
-                className="w-[20px] aspect-square"
+                className="w-[24px] aspect-square"
               >
                 <Image
                   src={"/icons/delete.svg"}
@@ -295,7 +295,7 @@ const MainHome = () => {
         ) : (
           <>
             {" "}
-            <div className="relative top-[16px] md:top-[24px] md:pb-[100px]md:px-[128px] grid md:grid-cols-3 grid-cols-2 min-h-[75dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
+            <div className="relative top-[16px] md:top-[24px] md:pb-[300px] md:px-[112px] grid md:grid-cols-3 grid-cols-2 min-h-[90dvh] place-items-center h-auto sm:grid-cols-2 w-full gap-2 md:gap-3 place-content-start items-start ">
               {isListModalOpen ? (
                 <AddListModal
                   getList={getLists}
