@@ -5,6 +5,7 @@ import NavigationButtons from "@/app/component/NavigationButtons";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
+import dbConnect from "@/libs/dbConnection";
 
 //list name for title
 type Props = {
@@ -23,6 +24,7 @@ export async function generateMetadata({
 }
 
 const page = async ({ params }: { params: { listId: string } }) => {
+  await dbConnect();
   const cookieHeader = (await cookies()).toString();
   const basesURL = process.env.BASE_URL;
   const session = await getSession();

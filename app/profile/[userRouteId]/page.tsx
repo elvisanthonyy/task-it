@@ -6,6 +6,7 @@ import ProfileNav from "@/app/component/ProfileNav";
 import NavigationButtons from "@/app/component/NavigationButtons";
 import ProfileItemComponent from "@/app/component/ProfileItemComponent";
 import Image from "next/image";
+import dbConnect from "@/libs/dbConnection";
 
 type Props = {
   params: Promise<{
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const page = async () => {
+  await dbConnect();
   const session = await getSession();
   const cookieHeader = (await cookies()).toString();
   const basesURL = process.env.BASE_URL;

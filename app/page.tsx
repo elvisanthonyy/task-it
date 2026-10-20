@@ -4,8 +4,10 @@ import { redirect } from "next/navigation";
 import Nav from "./component/nav";
 import MainHome from "./component/MainHome";
 import NavigationButtons from "./component/NavigationButtons";
+import dbConnect from "@/libs/dbConnection";
 
 export default async function Home() {
+  await dbConnect();
   const session = await getSession();
 
   if (!session?.user) {
